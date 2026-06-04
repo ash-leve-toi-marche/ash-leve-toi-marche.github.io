@@ -3,175 +3,622 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protocole SEL - ASH</title>
-  <meta name="description" content="Un protocole simple pour reprendre ta place sans tomber dans la peur.">
+  <title>ASH - Protocoles pour reprendre ta place</title>
+  <meta name="description" content="ASH - Leve-toi et marche. Des protocoles simples pour fermer les portes que tu continues d'ouvrir.">
+  <meta property="og:title" content="ASH - Protocole SEL">
+  <meta property="og:description" content="Fermer les portes que tu continues d'ouvrir. Sel, limite, action.">
+  <meta property="og:image" content="https://ash-leve-toi-marche.github.io/assets/ash_portrait.jpg">
+  <meta property="og:type" content="website">
   <style>
     :root {
-      color-scheme: light;
-      --ink: #141414;
-      --muted: #616977;
-      --paper: #fbfaf6;
-      --panel: #ffffff;
-      --line: #e6e1d7;
-      --accent: #0f766e;
-      --accent-dark: #134e4a;
+      color-scheme: dark;
+      --ash: #080807;
+      --ink: #f6f2e8;
+      --muted: #b8b0a2;
+      --line: rgba(246, 242, 232, .16);
+      --panel: rgba(246, 242, 232, .07);
+      --teal: #11a391;
+      --red: #c53d2d;
+      --gold: #d5b46b;
+      --paper: #efe8d8;
+      --black: #050504;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: var(--paper);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(197, 61, 45, .24), transparent 28rem),
+        radial-gradient(circle at 15% 88%, rgba(17, 163, 145, .18), transparent 24rem),
+        linear-gradient(135deg, #050504 0%, #11100e 48%, #090807 100%);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
     }
-    main {
-      width: min(920px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 34px 0 48px;
+
+    a {
+      color: inherit;
     }
+
+    .shell {
+      width: min(1160px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 8, 7, .78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: var(--ink);
+      color: var(--black);
+      font-weight: 950;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
       font-size: 14px;
       font-weight: 800;
-      letter-spacing: 0;
-      color: var(--accent-dark);
-      margin-bottom: 28px;
     }
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
-      gap: 28px;
+
+    .links {
+      display: flex;
+      gap: 18px;
       align-items: center;
     }
+
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr);
+      gap: 44px;
+      align-items: center;
+      padding: 46px 0 34px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: var(--gold);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+
+    .kicker:before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      background: var(--gold);
+    }
+
     h1 {
       margin: 0;
-      font-size: clamp(38px, 6vw, 66px);
-      line-height: .95;
+      max-width: 780px;
+      font-size: clamp(48px, 8vw, 104px);
+      line-height: .88;
       letter-spacing: 0;
     }
+
     .lead {
-      margin: 18px 0 0;
+      max-width: 680px;
+      margin: 24px 0 0;
+      color: #ddd3c3;
+      font-size: clamp(18px, 2.1vw, 25px);
+      line-height: 1.34;
+      font-weight: 650;
+    }
+
+    .truth {
+      margin: 26px 0 0;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+      max-width: 640px;
       color: var(--muted);
-      font-size: 19px;
-      line-height: 1.5;
-      max-width: 650px;
+      font-size: 16px;
+      line-height: 1.55;
     }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 22px;
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
     }
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 22px;
-      line-height: 1.15;
-    }
-    .card p {
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-    .form-placeholder {
-      display: grid;
-      gap: 10px;
-    }
-    input {
-      width: 100%;
-      height: 46px;
-      border-radius: 7px;
-      border: 1px solid var(--line);
-      padding: 0 12px;
-      font: inherit;
-      background: #fff;
-    }
-    button, .button {
+
+    .button {
+      min-height: 50px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      border: 0;
-      border-radius: 7px;
-      background: var(--accent);
-      color: #fff;
-      font: inherit;
-      font-weight: 800;
+      border: 1px solid transparent;
+      padding: 0 20px;
       text-decoration: none;
-      padding: 0 16px;
-      cursor: pointer;
+      font-weight: 950;
+      border-radius: 4px;
+      background: var(--teal);
+      color: var(--black);
     }
-    .note {
-      font-size: 12px;
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .portraitWrap {
+      position: relative;
+    }
+
+    .portrait {
+      position: relative;
+      min-height: 620px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      filter: contrast(1.08) saturate(.9);
+    }
+
+    .portrait:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 8, 7, 0) 30%, rgba(8, 8, 7, .85) 100%);
+    }
+
+    .quote {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      padding: 18px;
+      border-left: 5px solid var(--red);
+      background: rgba(8, 8, 7, .72);
+      backdrop-filter: blur(10px);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 74px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .sectionHead {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, .6fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .sectionHead p,
+    .bodyText {
+      margin: 0;
       color: var(--muted);
-      margin-top: 10px;
+      font-size: 17px;
+      line-height: 1.55;
     }
-    .sections {
+
+    .protocolGrid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 28px;
+      gap: 16px;
     }
-    .mini {
-      background: #fff;
+
+    .protocol {
+      display: flex;
+      min-height: 310px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 16px;
+      background: rgba(246, 242, 232, .06);
+      text-decoration: none;
     }
-    .mini b {
-      display: block;
-      margin-bottom: 6px;
+
+    .protocol.active {
+      background: linear-gradient(160deg, rgba(17, 163, 145, .24), rgba(246, 242, 232, .06));
     }
-    .mini span {
-      display: block;
+
+    .tag {
+      width: fit-content;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .protocol h3 {
+      margin: 70px 0 14px;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .protocol p {
+      margin: 0;
       color: var(--muted);
-      line-height: 1.4;
-      font-size: 14px;
+      line-height: 1.48;
     }
+
+    .leadPanel {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(320px, .65fr);
+      gap: 22px;
+      align-items: stretch;
+      background: var(--paper);
+      color: var(--black);
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    .leadPanel h2 {
+      color: var(--black);
+    }
+
+    .leadPanel p {
+      margin: 18px 0 0;
+      color: #4c4539;
+      font-size: 18px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .signup {
+      background: #fffaf0;
+      border: 1px solid rgba(5, 5, 4, .12);
+      padding: 20px;
+    }
+
+    .signup label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 950;
+      color: #5b5141;
+    }
+
+    .signup input {
+      width: 100%;
+      height: 52px;
+      border: 1px solid rgba(5, 5, 4, .18);
+      border-radius: 3px;
+      padding: 0 14px;
+      margin-bottom: 10px;
+      font: inherit;
+      color: var(--black);
+      background: #fff;
+    }
+
+    .signup .button {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .formStatus {
+      margin-top: 12px;
+      color: #5c4d35;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .manifesto div {
+      min-height: 170px;
+      padding: 18px;
+      background: var(--ash);
+    }
+
+    .manifesto b {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .manifesto span {
+      display: block;
+      font-size: 21px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
     footer {
-      margin-top: 30px;
+      padding: 34px 0 46px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
+      border-top: 1px solid var(--line);
     }
-    @media (max-width: 760px) {
-      .hero, .sections { grid-template-columns: 1fr; }
-      main { padding-top: 24px; }
+
+    @media (max-width: 900px) {
+      .links {
+        display: none;
+      }
+
+      .hero,
+      .sectionHead,
+      .leadPanel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 36px;
+      }
+
+      .portrait,
+      .portrait img {
+        min-height: 520px;
+      }
+
+      .protocolGrid {
+        grid-template-columns: 1fr;
+      }
+
+      .manifesto {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shell {
+        width: min(100% - 24px, 1160px);
+      }
+
+      .nav {
+        min-height: 58px;
+      }
+
+      .brand {
+        font-size: 13px;
+      }
+
+      .mark {
+        width: 30px;
+        height: 30px;
+      }
+
+      .portrait,
+      .portrait img {
+        min-height: 430px;
+      }
+
+      .quote {
+        font-size: 21px;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      .manifesto {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <div class="brand">ASH - Leve-toi et marche</div>
-    <section class="hero">
+  <header>
+    <nav class="shell nav" aria-label="Navigation principale">
+      <a class="brand" href="#top">
+        <span class="mark">A</span>
+        <span>ASH · Leve-toi et marche</span>
+      </a>
+      <div class="links">
+        <a href="#protocoles">Protocoles</a>
+        <a href="#pdf">PDF gratuit</a>
+        <a href="#manifeste">Manifeste</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="shell hero">
       <div>
-        <h1>Protocole SEL</h1>
-        <p class="lead">Fermer les portes que tu continues d'ouvrir. Un protocole simple pour te recentrer, poser une limite, et arreter de nourrir ce qui te vide.</p>
-      </div>
-      <aside class="card">
-        <h2>Recevoir le PDF gratuit</h2>
-        <p>Le sel n'est pas une promesse magique. C'est un support. La vraie protection commence par une limite.</p>
-        <div class="form-placeholder">
-          <a class="button" href="assets/protocole_sel_gratuit.pdf" download>Telecharger le protocole</a>
+        <div class="kicker">Pas de magie. Une decision.</div>
+        <h1>Ferme les portes que tu continues d'ouvrir.</h1>
+        <p class="lead">ASH n'est pas la pour te vendre un objet sacre. ASH est la pour te remettre debout : foi, limite, discipline, action.</p>
+        <p class="truth">Le protocole SEL est le premier cadre gratuit. Tu le fais sans panique, sans superstition, sans theatre. Tu nommes la porte, tu poses un signe, puis tu fais un acte concret dans les 24 heures.</p>
+        <div class="actions">
+          <a class="button" href="#pdf">Recevoir le protocole</a>
+          <a class="button secondary" href="#protocoles">Voir les prochains protocoles</a>
         </div>
-        <div class="note">Version temporaire. Ensuite on branche un formulaire email Brevo ou MailerLite pour envoyer le PDF automatiquement.</div>
-      </aside>
-    </section>
-    <section class="sections">
-      <div class="mini">
-        <b>Sel</b>
-        <span>Un rappel visible, pas une idole.</span>
       </div>
-      <div class="mini">
-        <b>Limite</b>
-        <span>Ce que tu arretes d'alimenter reprend moins de pouvoir.</span>
-      </div>
-      <div class="mini">
-        <b>Action</b>
-        <span>Un geste concret dans les 24 heures, sinon le rituel reste decoratif.</span>
+      <div class="portraitWrap" aria-label="Portrait ASH">
+        <div class="portrait">
+          <img src="assets/ash_portrait.jpg" alt="ASH face camera">
+        </div>
+        <div class="quote">Le rituel ne remplace jamais la limite.</div>
       </div>
     </section>
-    <footer>
-      Ce contenu est spirituel et introspectif. Il ne remplace pas un avis medical, psychologique, juridique ou religieux personnalise.
-    </footer>
+
+    <section id="protocoles" class="shell">
+      <div class="sectionHead">
+        <h2>Les protocoles ASH</h2>
+        <p>Le site est construit pour grandir. Aujourd'hui : SEL. Demain : couper un lien, nettoyer une journee, sortir de la peur, remettre de l'ordre.</p>
+      </div>
+      <div class="protocolGrid">
+        <a class="protocol active" href="#pdf">
+          <div class="tag">Disponible</div>
+          <div>
+            <h3>Protocole SEL</h3>
+            <p>Fermer une porte sans tomber dans la peur : sel, eau, priere, limite, action.</p>
+          </div>
+        </a>
+        <div class="protocol">
+          <div class="tag">Bientot</div>
+          <div>
+            <h3>Couper un lien</h3>
+            <p>Arreter de nourrir une relation, une pensee ou une conversation qui te vide.</p>
+          </div>
+        </div>
+        <div class="protocol">
+          <div class="tag">Bientot</div>
+          <div>
+            <h3>Ne dors pas avec ca</h3>
+            <p>Un protocole du soir pour ne pas ramener toute la journee dans ton lit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pdf" class="shell">
+      <div class="leadPanel">
+        <div>
+          <div class="kicker">PDF gratuit</div>
+          <h2>Protocole SEL</h2>
+          <p>Tu veux le sel ? Prends aussi la responsabilite qui va avec. Ce PDF te donne un cadre simple : nommer la porte, poser le signe, puis poser une action concrete.</p>
+          <p>Version actuelle : telechargement direct. Prochaine etape : formulaire email branche a Brevo, MailerLite ou Formspree pour recuperer les adresses proprement.</p>
+        </div>
+        <form class="signup" id="leadForm">
+          <label for="email">Ton email</label>
+          <input id="email" name="email" type="email" placeholder="ton@email.com" autocomplete="email">
+          <input type="hidden" name="protocol" value="Protocole SEL">
+          <input type="hidden" name="source" value="ash-github-page">
+          <input type="hidden" name="audience_intent" value="commentaire SEL">
+          <button class="button" type="submit">Recevoir le PDF</button>
+          <div class="formStatus" id="formStatus">Le formulaire n'est pas encore branche a une liste email. Le bouton te donne le PDF directement pour ne pas bloquer les gens.</div>
+        </form>
+      </div>
+    </section>
+
+    <section id="manifeste" class="shell">
+      <div class="sectionHead">
+        <h2>La ligne ASH</h2>
+        <p>Ce n'est pas du developpement personnel sucre. C'est court, direct, spirituel, et oriente action.</p>
+      </div>
+      <div class="manifesto">
+        <div>
+          <b>01</b>
+          <span>Tu ne gueris pas ce que tu continues a nourrir.</span>
+        </div>
+        <div>
+          <b>02</b>
+          <span>La foi sans limite devient fatigue.</span>
+        </div>
+        <div>
+          <b>03</b>
+          <span>Un signe ne vaut rien sans un acte.</span>
+        </div>
+        <div>
+          <b>04</b>
+          <span>Reprendre ta place commence aujourd'hui.</span>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="shell">
+      ASH - Leve-toi et marche. Ce contenu est spirituel et introspectif. Il ne remplace pas un avis medical, psychologique, juridique ou religieux personnalise.
+    </div>
+  </footer>
+
+  <script>
+    const FORM_ENDPOINT = "";
+    const PDF_URL = "assets/protocole_sel_gratuit.pdf";
+    const form = document.querySelector("#leadForm");
+    const status = document.querySelector("#formStatus");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = new FormData(form).get("email");
+      if (!email) {
+        status.textContent = "Mets ton email, ou telecharge directement le PDF.";
+        return;
+      }
+
+      if (!FORM_ENDPOINT) {
+        status.textContent = "Formulaire pas encore branche. Telechargement du PDF...";
+        window.location.href = PDF_URL;
+        return;
+      }
+
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(form)
+      });
+
+      if (response.ok) {
+        status.textContent = "C'est bon. Le PDF s'ouvre maintenant.";
+        window.location.href = PDF_URL;
+      } else {
+        status.textContent = "Le formulaire a bloque. Telecharge le PDF directement et reessaie plus tard.";
+        window.location.href = PDF_URL;
+      }
+    });
+  </script>
 </body>
 </html>
