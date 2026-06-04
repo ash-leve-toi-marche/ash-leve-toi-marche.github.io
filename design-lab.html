@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASH - 10 directions design</title>
+  <meta name="description" content="10 propositions de directions visuelles pour ASH.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --black: #050505;
+      --white: #f4efe5;
+      --muted: #a9a095;
+      --gold: #c9a85d;
+      --red: #9d3128;
+      --teal: #008976;
+      --line: rgba(244, 239, 229, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #050505;
+      color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 5, 5, .86);
+      backdrop-filter: blur(16px);
+    }
+
+    .topInner {
+      width: min(1280px, calc(100% - 30px));
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .top b {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .top nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .top nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .intro {
+      width: min(1180px, calc(100% - 30px));
+      margin: 0 auto;
+      padding: 70px 0 44px;
+    }
+
+    .intro h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(46px, 8vw, 112px);
+      line-height: .86;
+      letter-spacing: 0;
+    }
+
+    .intro p {
+      max-width: 740px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .variant {
+      min-height: 100vh;
+      border-top: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 30px));
+      margin: 0 auto;
+    }
+
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 950;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .08em;
+    }
+
+    .meta:before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      background: currentColor;
+    }
+
+    .note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .v1 {
+      position: relative;
+      background: #050505;
+    }
+
+    .v1 .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, .8fr);
+      gap: 34px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .v1 h2 {
+      margin: 16px 0 0;
+      font-size: clamp(52px, 8vw, 118px);
+      line-height: .82;
+      letter-spacing: 0;
+    }
+
+    .v1 p {
+      max-width: 620px;
+      color: #d6ccbd;
+      font-size: 22px;
+      line-height: 1.34;
+      font-weight: 650;
+    }
+
+    .v1 .button {
+      background: var(--gold);
+      color: #050505;
+    }
+
+    .v1 figure {
+      margin: 0;
+      min-height: 680px;
+      border: 1px solid var(--line);
+      background-image: linear-gradient(180deg, transparent 50%, rgba(5, 5, 5, .8)), url("assets/ash_ritual_portrait.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .v2 {
+      background: var(--white);
+      color: #0d0c0a;
+    }
+
+    .v2 .grid {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, .55fr);
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .v2 .copy {
+      padding: clamp(44px, 8vw, 90px) 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .v2 .meta {
+      color: #7d241c;
+    }
+
+    .v2 h2 {
+      margin: 18px 0 0;
+      max-width: 820px;
+      font-size: clamp(54px, 8vw, 126px);
+      line-height: .85;
+      letter-spacing: 0;
+    }
+
+    .v2 p {
+      max-width: 620px;
+      color: #3a3329;
+      font-size: 21px;
+      line-height: 1.4;
+      font-weight: 650;
+    }
+
+    .v2 .button {
+      background: #0d0c0a;
+      color: var(--white);
+    }
+
+    .v2 .side {
+      min-height: 100vh;
+      background: url("assets/ash_ritual_portrait.png") center / cover;
+      filter: contrast(1.04);
+    }
+
+    .v3 {
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, .95) 0%, rgba(5, 5, 5, .7) 46%, rgba(5, 5, 5, .2) 100%),
+        url("assets/ash_ritual_portrait.png") center / cover;
+    }
+
+    .v3 .content {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 760px;
+      padding: 60px 0;
+    }
+
+    .v3 h2 {
+      margin: 18px 0 0;
+      font-size: clamp(50px, 8vw, 116px);
+      line-height: .84;
+    }
+
+    .v3 p {
+      color: #e4d9c6;
+      max-width: 610px;
+      font-size: 21px;
+      line-height: 1.42;
+    }
+
+    .v3 .button {
+      background: var(--teal);
+      color: #050505;
+    }
+
+    .v4 {
+      background: #080808;
+    }
+
+    .v4 .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+    }
+
+    .v4 aside {
+      padding: 34px 24px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--muted);
+    }
+
+    .v4 .main {
+      padding: clamp(38px, 6vw, 76px);
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, .7fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .v4 h2 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 104px);
+      line-height: .88;
+    }
+
+    .v4 p {
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.42;
+    }
+
+    .v4 .shot {
+      min-height: 620px;
+      background: url("assets/ash_ritual_portrait.png") center / cover;
+      border: 1px solid var(--line);
+    }
+
+    .v4 .button {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .v5 {
+      background: #0f0d0a;
+      color: var(--white);
+    }
+
+    .v5 .poster {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 50px 0;
+    }
+
+    .v5 .sheet {
+      width: min(980px, 100%);
+      min-height: 720px;
+      padding: clamp(28px, 5vw, 62px);
+      display: grid;
+      align-content: space-between;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(5, 5, 5, .25), rgba(5, 5, 5, .8)),
+        url("assets/ash_ritual_portrait.png") center / cover;
+    }
+
+    .v5 h2 {
+      margin: 0;
+      max-width: 880px;
+      font-size: clamp(48px, 8vw, 118px);
+      line-height: .84;
+      text-transform: uppercase;
+    }
+
+    .v5 .lower {
+      display: grid;
+      grid-template-columns: minmax(0, .7fr) auto;
+      gap: 24px;
+      align-items: end;
+    }
+
+    .v5 p {
+      max-width: 580px;
+      font-size: 20px;
+      line-height: 1.4;
+      color: #e3d6c2;
+    }
+
+    .v5 .button {
+      background: var(--white);
+      color: #080808;
+    }
+
+    .v6 {
+      background: #111;
+    }
+
+    .v6 .cards {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .v6 .title {
+      grid-column: span 7;
+    }
+
+    .v6 h2 {
+      margin: 14px 0 0;
+      font-size: clamp(48px, 7vw, 104px);
+      line-height: .9;
+    }
+
+    .v6 p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .v6 .photo {
+      grid-column: span 5;
+      min-height: 620px;
+      background: url("assets/ash_ritual_portrait.png") center / cover;
+      border: 1px solid var(--line);
+    }
+
+    .v6 .strip {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+    }
+
+    .v6 .strip div {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+      min-height: 140px;
+    }
+
+    .v6 .strip div:last-child {
+      border-right: 0;
+    }
+
+    .v6 .strip b {
+      color: var(--gold);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .v6 .strip span {
+      display: block;
+      margin-top: 20px;
+      font-size: 22px;
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .v6 .button {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .v7 {
+      background: #040404;
+    }
+
+    .v7 .frame {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, .65fr) minmax(0, .75fr);
+      align-items: center;
+      gap: 36px;
+      padding: 56px 0;
+    }
+
+    .v7 .app {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .05);
+      padding: 18px;
+    }
+
+    .v7 .screen {
+      min-height: 640px;
+      background:
+        linear-gradient(180deg, rgba(4, 4, 4, 0) 35%, rgba(4, 4, 4, .82) 100%),
+        url("assets/ash_ritual_portrait.png") center / cover;
+      position: relative;
+    }
+
+    .v7 .screen b {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      font-size: 32px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .v7 h2 {
+      margin: 14px 0 0;
+      font-size: clamp(44px, 7vw, 96px);
+      line-height: .88;
+    }
+
+    .v7 p {
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.42;
+      max-width: 620px;
+    }
+
+    .v7 .button {
+      background: #fff;
+      color: #050505;
+    }
+
+    .v8 {
+      background: #efe9dc;
+      color: #111;
+    }
+
+    .v8 .editorial {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(360px, .72fr);
+      gap: 30px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .v8 .meta {
+      color: #7f2d24;
+    }
+
+    .v8 h2 {
+      margin: 14px 0 0;
+      font-size: clamp(52px, 8vw, 116px);
+      line-height: .86;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 900;
+    }
+
+    .v8 p {
+      max-width: 600px;
+      color: #42392d;
+      font-size: 21px;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .v8 .image {
+      min-height: 650px;
+      background: url("assets/ash_ritual_portrait.png") center / cover;
+      box-shadow: 18px 18px 0 #111;
+    }
+
+    .v8 .button {
+      background: #111;
+      color: #efe9dc;
+    }
+
+    .v9 {
+      background: #090909;
+    }
+
+    .v9 .commerce {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(330px, .58fr);
+      gap: 28px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .v9 h2 {
+      margin: 14px 0 0;
+      font-size: clamp(44px, 7vw, 104px);
+      line-height: .88;
+    }
+
+    .v9 p {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .v9 .product {
+      border: 1px solid var(--line);
+      background: #f0e9dc;
+      color: #111;
+      padding: 16px;
+    }
+
+    .v9 .product img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      display: block;
+      object-fit: cover;
+    }
+
+    .v9 .product h3 {
+      font-size: 28px;
+      line-height: 1;
+      margin: 18px 0 10px;
+    }
+
+    .v9 .product p {
+      color: #4a4034;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .v9 .button {
+      background: var(--teal);
+      color: #050505;
+    }
+
+    .v10 {
+      background:
+        linear-gradient(180deg, rgba(5, 5, 5, .85), rgba(5, 5, 5, .98)),
+        url("assets/ash_ritual_portrait.png") center / cover;
+    }
+
+    .v10 .system {
+      min-height: 100vh;
+      display: grid;
+      align-content: center;
+      padding: 60px 0;
+    }
+
+    .v10 h2 {
+      margin: 14px 0 0;
+      max-width: 980px;
+      font-size: clamp(50px, 8vw, 120px);
+      line-height: .86;
+    }
+
+    .v10 .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .v10 .steps div {
+      min-height: 180px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(5, 5, 5, .72);
+      backdrop-filter: blur(8px);
+    }
+
+    .v10 .steps b {
+      color: var(--gold);
+      font-size: 13px;
+    }
+
+    .v10 .steps span {
+      display: block;
+      margin-top: 34px;
+      font-size: 23px;
+      line-height: 1.05;
+      font-weight: 950;
+    }
+
+    .v10 .button {
+      width: fit-content;
+      margin-top: 28px;
+      background: var(--red);
+      color: var(--white);
+    }
+
+    @media (max-width: 900px) {
+      .top nav {
+        display: none;
+      }
+
+      .v1 .hero,
+      .v2 .grid,
+      .v4 .main,
+      .v7 .frame,
+      .v8 .editorial,
+      .v9 .commerce {
+        grid-template-columns: 1fr;
+      }
+
+      .v4 .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .v4 aside {
+        min-height: 180px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .v2 .side {
+        min-height: 520px;
+      }
+
+      .v6 .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .v6 .title,
+      .v6 .photo,
+      .v6 .strip {
+        grid-column: auto;
+      }
+
+      .v6 .strip,
+      .v10 .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap,
+      .topInner,
+      .intro {
+        width: min(100% - 22px, 1280px);
+      }
+
+      .intro {
+        padding-top: 44px;
+      }
+
+      .v1 figure,
+      .v4 .shot,
+      .v5 .sheet,
+      .v6 .photo,
+      .v7 .screen,
+      .v8 .image {
+        min-height: 440px;
+      }
+
+      .v5 .lower {
+        grid-template-columns: 1fr;
+      }
+
+      .v6 .strip,
+      .v10 .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="topInner">
+      <b>ASH Design Lab</b>
+      <nav aria-label="Propositions">
+        <a href="#v1">01</a>
+        <a href="#v2">02</a>
+        <a href="#v3">03</a>
+        <a href="#v4">04</a>
+        <a href="#v5">05</a>
+        <a href="#v6">06</a>
+        <a href="#v7">07</a>
+        <a href="#v8">08</a>
+        <a href="#v9">09</a>
+        <a href="#v10">10</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>10 directions pour une page ASH qui ne sent plus le template.</h1>
+      <p>Chaque proposition garde le meme objectif : capter l'email, donner le PDF, installer ton autorite, et laisser la place a plusieurs protocoles demain.</p>
+    </section>
+
+    <section class="variant v1" id="v1">
+      <div class="wrap hero">
+        <div>
+          <div class="meta">01 · Monolithe noir</div>
+          <h2>Reprends ta place.</h2>
+          <p>Direction premium, mystique et frontale. Parfait si on veut que la page ressemble a une marque forte, pas a une page gratuite.</p>
+          <a class="button" href="/#pdf">Recevoir le protocole</a>
+          <div class="note">Pattern : hero autoritaire + CTA unique + preuve de positionnement.</div>
+        </div>
+        <figure aria-label="Portrait ASH"></figure>
+      </div>
+    </section>
+
+    <section class="variant v2" id="v2">
+      <div class="wrap grid">
+        <div class="copy">
+          <div class="meta">02 · Editorial clair</div>
+          <h2>Le sel ne suffit pas.</h2>
+          <p>Plus sobre, plus media premium. Ca rassure les gens qui arrivent froids depuis TikTok et convertit bien pour un PDF gratuit.</p>
+          <a class="button" href="/#pdf">Recevoir le PDF</a>
+          <div class="note">Pattern : contraste fort, message clair, moins occulte, plus confiance.</div>
+        </div>
+        <div class="side" aria-label="ASH portrait"></div>
+      </div>
+    </section>
+
+    <section class="variant v3" id="v3">
+      <div class="wrap content">
+        <div class="meta">03 · Plein ecran cinematographique</div>
+        <h2>Ferme la porte.</h2>
+        <p>La photo porte tout. Peu de mots, grosse tension, CTA immediat. C'est le plus proche de l'ambiance que tu as envoyee.</p>
+        <a class="button" href="/#pdf">Prendre le protocole</a>
+        <div class="note">Pattern : full-bleed image + phrase ultra courte + conversion rapide.</div>
+      </div>
+    </section>
+
+    <section class="variant v4" id="v4">
+      <div class="layout">
+        <aside>
+          <b>ASH · Protocoles</b>
+          <span>SEL<br>Couper un lien<br>Ne dors pas avec ca<br>Discipline</span>
+        </aside>
+        <div class="main">
+          <div>
+            <div class="meta">04 · Command Center</div>
+            <h2>Un protocole. Une decision. Un acte.</h2>
+            <p>Plus systeme, plus scalable. Si demain tu as 10 protocoles, ce style peut devenir une vraie bibliotheque ASH.</p>
+            <a class="button" href="/#pdf">Commencer</a>
+            <div class="note">Pattern : navigation de produits + autorite + structure long terme.</div>
+          </div>
+          <div class="shot" aria-label="Portrait ASH"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="variant v5" id="v5">
+      <div class="wrap poster">
+        <div class="sheet">
+          <div>
+            <div class="meta">05 · Affiche de film</div>
+            <h2>Tu ne gueris pas ce que tu nourris.</h2>
+          </div>
+          <div class="lower">
+            <p>Le style le plus impact TikTok : une phrase qui tape, une photo forte, et un lien direct vers le protocole.</p>
+            <a class="button" href="/#pdf">Recevoir</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="variant v6" id="v6">
+      <div class="wrap cards">
+        <div class="title">
+          <div class="meta">06 · Manifeste premium</div>
+          <h2>Pas un rituel. Un cadre.</h2>
+          <p>Excellent pour construire une marque de conviction. On vend une vision avant de vendre un PDF.</p>
+          <a class="button" href="/#pdf">Recevoir le protocole</a>
+        </div>
+        <div class="photo" aria-label="ASH portrait"></div>
+        <div class="strip">
+          <div><b>Sel</b><span>Un rappel visible.</span></div>
+          <div><b>Limite</b><span>La porte que tu fermes.</span></div>
+          <div><b>Action</b><span>La preuve dans les 24h.</span></div>
+          <div><b>Foi</b><span>La racine du mouvement.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="variant v7" id="v7">
+      <div class="wrap frame">
+        <div class="app">
+          <div class="screen">
+            <b>Le rituel ne remplace jamais la limite.</b>
+          </div>
+        </div>
+        <div>
+          <div class="meta">07 · Mobile first creator</div>
+          <h2>Construit pour les gens qui viennent de TikTok.</h2>
+          <p>Le visuel reprend le format vertical et donne une continuite immediate entre video, commentaire, bio et PDF.</p>
+          <a class="button" href="/#pdf">Prendre le PDF</a>
+          <div class="note">Pattern : continuation TikTok + faible friction + confiance.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="variant v8" id="v8">
+      <div class="wrap editorial">
+        <div>
+          <div class="meta">08 · Livre sacre moderne</div>
+          <h2>Fermer les portes que tu continues d'ouvrir.</h2>
+          <p>Plus calme, plus profond. Bon si on veut donner de la valeur au PDF, comme un livret a garder.</p>
+          <a class="button" href="/#pdf">Telecharger</a>
+          <div class="note">Pattern : confiance editoriale + valeur percue du document.</div>
+        </div>
+        <div class="image" aria-label="Portrait ASH"></div>
+      </div>
+    </section>
+
+    <section class="variant v9" id="v9">
+      <div class="wrap commerce">
+        <div>
+          <div class="meta">09 · Pre-ecommerce</div>
+          <h2>Premier protocole gratuit. Les prochains vont plus loin.</h2>
+          <p>Le plus oriente business : la page prepare deja une boutique de produits digitaux, sans faire cheap.</p>
+          <a class="button" href="/#pdf">Recevoir le gratuit</a>
+          <div class="note">Pattern : lead magnet maintenant, produit payant ensuite.</div>
+        </div>
+        <div class="product">
+          <img src="assets/ash_ritual_portrait.png" alt="ASH">
+          <h3>Protocole SEL</h3>
+          <p>Fermer une porte. Poser un signe. Passer a l'action.</p>
+          <a class="button" href="/#pdf">Gratuit</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="variant v10" id="v10">
+      <div class="wrap system">
+        <div class="meta">10 · Systeme de transformation</div>
+        <h2>Le protocole qui transforme un commentaire en decision.</h2>
+        <div class="steps">
+          <div><b>01</b><span>Tu commentes SEL.</span></div>
+          <div><b>02</b><span>Tu recois le cadre.</span></div>
+          <div><b>03</b><span>Tu poses une limite.</span></div>
+          <div><b>04</b><span>Tu agis sous 24h.</span></div>
+        </div>
+        <a class="button" href="/#pdf">Commencer maintenant</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
