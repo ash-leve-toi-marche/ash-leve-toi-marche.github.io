@@ -548,7 +548,7 @@
           <input type="hidden" name="source" value="ash-github-page">
           <input type="hidden" name="audience_intent" value="commentaire SEL">
           <button class="button" type="submit">Recevoir le PDF</button>
-          <div class="formStatus" id="formStatus">Le formulaire n'est pas encore branche a une liste email. Le bouton te donne le PDF directement pour ne pas bloquer les gens.</div>
+          <div class="formStatus" id="formStatus">Entre ton email. Le PDF s'ouvrira juste apres l'inscription.</div>
         </form>
       </div>
     </section>
@@ -586,7 +586,7 @@
   </footer>
 
   <script>
-    const FORM_ENDPOINT = "";
+    const FORM_ENDPOINT = "https://formspree.io/f/xkoagbrb";
     const PDF_URL = "assets/protocole_sel_gratuit.pdf";
     const form = document.querySelector("#leadForm");
     const status = document.querySelector("#formStatus");
@@ -596,12 +596,6 @@
       const email = new FormData(form).get("email");
       if (!email) {
         status.textContent = "Mets ton email, ou telecharge directement le PDF.";
-        return;
-      }
-
-      if (!FORM_ENDPOINT) {
-        status.textContent = "Formulaire pas encore branche. Telechargement du PDF...";
-        window.location.href = PDF_URL;
         return;
       }
 
