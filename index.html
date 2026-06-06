@@ -491,7 +491,7 @@
         <p class="lead">ASH n'est pas la pour te vendre un objet sacre. ASH est la pour te remettre debout : foi, limite, discipline, action.</p>
         <p class="truth">Le protocole SEL est le premier cadre gratuit. Tu le fais sans panique, sans superstition, sans theatre. Tu nommes la porte, tu poses un signe, puis tu fais un acte concret dans les 24 heures.</p>
         <div class="actions">
-          <a class="button" href="#pdf">Recevoir le protocole</a>
+          <a class="button" href="funnel-sel.html">Recevoir le protocole</a>
           <a class="button secondary" href="#protocoles">Voir les prochains protocoles</a>
         </div>
       </div>
@@ -539,17 +539,12 @@
           <div class="kicker">PDF gratuit</div>
           <h2>Protocole SEL</h2>
           <p>Tu veux le sel ? Prends aussi la responsabilite qui va avec. Ce PDF te donne un cadre simple : nommer la porte, poser le signe, puis poser une action concrete.</p>
-          <p>Version actuelle : telechargement direct. Prochaine etape : formulaire email branche a Brevo, MailerLite ou Formspree pour recuperer les adresses proprement.</p>
+          <p>Version actuelle : inscription via EmailOctopus, puis ouverture du PDF sur la page merci.</p>
         </div>
-        <form class="signup" id="leadForm">
-          <label for="email">Ton email</label>
-          <input id="email" name="email" type="email" placeholder="ton@email.com" autocomplete="email">
-          <input type="hidden" name="protocol" value="Protocole SEL">
-          <input type="hidden" name="source" value="ash-github-page">
-          <input type="hidden" name="audience_intent" value="commentaire SEL">
-          <button class="button" type="submit">Recevoir le PDF</button>
-          <div class="formStatus" id="formStatus">Entre ton email. Le PDF s'ouvrira juste apres l'inscription.</div>
-        </form>
+        <div class="signup">
+          <a class="button" href="funnel-sel.html">Recevoir le PDF</a>
+          <div class="formStatus">Le formulaire EmailOctopus est sur la page du protocole.</div>
+        </div>
       </div>
     </section>
 
@@ -585,34 +580,5 @@
     </div>
   </footer>
 
-  <script>
-    const FORM_ENDPOINT = "https://formspree.io/f/xkoagbrb";
-    const PDF_URL = "assets/protocole_sel_gratuit.pdf?v=6aa1382";
-    const form = document.querySelector("#leadForm");
-    const status = document.querySelector("#formStatus");
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const email = new FormData(form).get("email");
-      if (!email) {
-        status.textContent = "Mets ton email, ou telecharge directement le PDF.";
-        return;
-      }
-
-      const response = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Accept": "application/json" },
-        body: new FormData(form)
-      });
-
-      if (response.ok) {
-        status.textContent = "C'est bon. Le PDF s'ouvre maintenant.";
-        window.location.href = PDF_URL;
-      } else {
-        status.textContent = "Le formulaire a bloque. Telecharge le PDF directement et reessaie plus tard.";
-        window.location.href = PDF_URL;
-      }
-    });
-  </script>
 </body>
 </html>
