@@ -269,10 +269,20 @@
       padding: 22px;
       border: 1px solid rgba(201,164,90,.42);
       overflow: hidden;
+      cursor: pointer;
       background:
         linear-gradient(145deg, rgba(10,8,6,.7), rgba(25,18,12,.88)),
         url("assets/grimoire_cover_dark.png") center / cover;
       box-shadow: 0 24px 80px rgba(0,0,0,.58);
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    .panel:hover,
+    .panel:focus-visible {
+      border-color: rgba(201,164,90,.78);
+      box-shadow: 0 28px 90px rgba(0,0,0,.62), 0 0 0 1px rgba(201,164,90,.18);
+      transform: translateY(-2px);
+      outline: 0;
     }
 
     .panel::before {
@@ -556,7 +566,7 @@
         </div>
       </div>
 
-      <aside class="panel" aria-label="Grimoire ASH">
+      <aside class="panel" role="button" tabindex="0" aria-label="Remonter au formulaire pour recevoir le PDF SEL" data-scroll-to-lead>
         <div class="panel-inner">
           <div class="sigil"></div>
           <div class="seal-word">SEL</div>
@@ -642,6 +652,23 @@
 
     document.addEventListener("emailoctopus:form.success", () => {
       window.location.href = THANK_YOU_URL;
+    });
+
+    const leadShortcut = document.querySelector("[data-scroll-to-lead]");
+    const scrollToLeadForm = () => {
+      const form = document.getElementById("leadForm");
+      form?.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => {
+        form?.querySelector('input[type="email"]')?.focus({ preventScroll: true });
+      }, 450);
+    };
+
+    leadShortcut?.addEventListener("click", scrollToLeadForm);
+    leadShortcut?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        scrollToLeadForm();
+      }
     });
   </script>
 </body>
