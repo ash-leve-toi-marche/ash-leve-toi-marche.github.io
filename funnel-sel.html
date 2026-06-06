@@ -136,6 +136,7 @@
       line-height: .92;
       letter-spacing: 0;
       text-wrap: balance;
+      overflow-wrap: break-word;
     }
 
     .sub {
@@ -469,9 +470,22 @@
       .nav { min-height: 62px; font-size: 10px; }
       .mark::before { width: 28px; height: 28px; }
       .hero { padding-top: 26px; }
-      h1 { font-size: clamp(33px, 10vw, 46px); line-height: .96; }
+      h1 { font-size: clamp(30px, 8.6vw, 38px); line-height: 1.02; }
       .sub { font-size: 18px; }
       .field-row, .proof, .protocols { grid-template-columns: 1fr; }
+      .form { padding: 10px; overflow: hidden; }
+      .emailoctopus-embed [data-form] .main-form {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      .emailoctopus-embed [data-form] input[type="email"],
+      .emailoctopus-embed [data-form] input[type="submit"] {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+      .emailoctopus-embed [data-form] input[type="submit"] {
+        padding: 0 14px !important;
+      }
       .proof div { border-right: 0; border-bottom: 1px solid rgba(201,164,90,.22); }
       .proof div:last-child { border-bottom: 0; }
       .panel { padding: 14px; }
