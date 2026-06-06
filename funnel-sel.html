@@ -568,8 +568,21 @@
       const email = wrapper?.querySelector('input[type="email"]');
       const submit = wrapper?.querySelector('input[type="submit"]');
 
-      if (email) email.placeholder = "Ton email pour recevoir le PDF";
-      if (submit) submit.value = "Recevoir le PDF";
+      if (email) {
+        email.placeholder = "Ton email pour recevoir le PDF";
+        email.style.setProperty("background-color", "rgba(4, 4, 3, .88)", "important");
+        email.style.setProperty("border-color", "rgba(201, 164, 90, .62)", "important");
+        email.style.setProperty("color", "#e8dcc3", "important");
+        email.style.setProperty("caret-color", "#c9a45a", "important");
+        email.style.setProperty("box-shadow", "none", "important");
+      }
+
+      if (submit) {
+        submit.value = "Recevoir le PDF";
+        submit.style.setProperty("background-color", "#c9a45a", "important");
+        submit.style.setProperty("border-color", "#c9a45a", "important");
+        submit.style.setProperty("color", "#130e08", "important");
+      }
 
       return Boolean(email && submit);
     };
