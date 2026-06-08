@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ASH - Protocole SEL gratuit</title>
   <meta name="description" content="Reçois le Protocole SEL gratuit, puis continue avec le Protocole de Protection 7 jours.">
+  <script>
+    window.ASH_TRACKING = {
+      gaId: "",
+      clarityId: "",
+      pageType: "landing_sel",
+      funnel: "sel_to_protection"
+    };
+  </script>
+  <script defer src="../assets/tracking.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600;800;900&family=Inter:wght@500;700;900&display=swap');
 
@@ -420,7 +429,7 @@
           </div>
 
           <aside class="videoCard" aria-label="Vidéo d'introduction au protocole SEL">
-            <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg">
+            <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg" data-track-video="sel_landing_intro">
               <source src="../assets/videos/ash_sel_landing_video.mp4" type="video/mp4">
             </video>
           </aside>
@@ -449,7 +458,7 @@
       <aside class="priceBox">
         <div class="price">17 €</div>
         <p>PDF complet + checklist. Livraison automatique par Payhip.</p>
-        <a class="button" href="https://payhip.com/b/TV0tN">Accéder au protocole</a>
+        <a class="button" href="https://payhip.com/b/TV0tN" data-track-cta="payhip_protection_7_days">Accéder au protocole</a>
       </aside>
     </section>
   </main>
@@ -488,6 +497,13 @@
     }
 
     document.addEventListener("emailoctopus:form.success", () => {
+      if (window.ashTrackNavigate) {
+        window.ashTrackNavigate("ash_lead_success", {
+          form_name: "emailoctopus_sel_pdf",
+          destination: THANK_YOU_URL
+        }, THANK_YOU_URL);
+        return;
+      }
       window.location.href = THANK_YOU_URL;
     });
   </script>

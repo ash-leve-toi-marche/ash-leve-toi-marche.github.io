@@ -4,6 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ASH - Protocole SEL reçu</title>
+  <script>
+    window.ASH_TRACKING = {
+      gaId: "",
+      clarityId: "",
+      pageType: "merci_sel",
+      funnel: "sel_to_protection"
+    };
+  </script>
+  <script defer src="assets/tracking.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&display=swap');
     :root {
@@ -129,11 +138,11 @@
     <h1>Commence par le PDF gratuit.</h1>
     <p>Lis-le calmement. Ne cherche pas un signe partout. Cherche la porte que tu continues d'ouvrir, puis fais une action dans les 24 heures.</p>
     <div class="actions">
-      <a class="button" href="assets/protocole_sel_gratuit.pdf?v=6aa1382">Ouvrir le PDF</a>
+      <a class="button" href="assets/protocole_sel_gratuit.pdf?v=6aa1382" data-track-pdf="protocole_sel_gratuit">Ouvrir le PDF</a>
       <a class="button secondary" href="funnel-sel.html">Retour</a>
     </div>
     <div class="videoFrame" aria-label="Vidéo de suite du protocole SEL">
-      <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg">
+      <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg" data-track-video="protection_merci_upsell">
         <source src="assets/videos/ash_protection_merci_video.mp4" type="video/mp4">
       </video>
     </div>
@@ -150,7 +159,7 @@
           <li>Checklist quotidienne</li>
           <li>Livraison automatique Payhip</li>
         </ul>
-        <a class="button" href="https://payhip.com/b/TV0tN">Accéder au protocole</a>
+        <a class="button" href="https://payhip.com/b/TV0tN" data-track-cta="payhip_protection_7_days">Accéder au protocole</a>
         <p class="payhip-note">Paiement sécurisé. Le PDF est envoyé automatiquement après achat.</p>
       </aside>
     </section>
