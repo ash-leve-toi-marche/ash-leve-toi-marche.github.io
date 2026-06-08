@@ -1,7 +1,7 @@
 (function () {
   const config = window.ASH_TRACKING || {};
-  const pageType = config.pageType || "unknown";
-  const funnel = config.funnel || "sel_to_protection";
+  const pageType = config.pageType || "inconnu";
+  const funnel = config.funnel || "sel_vers_protection";
   const gaId = (config.gaId || "").trim();
   const clarityId = (config.clarityId || "").trim();
   const debug = config.debug || new URLSearchParams(window.location.search).has("debug_tracking");
@@ -16,11 +16,11 @@
 
   function baseParams(params) {
     return Object.assign({
-      funnel,
-      page_type: pageType,
-      page_path: window.location.pathname,
-      page_location: window.location.href,
-      page_title: document.title
+      parcours: funnel,
+      type_page: pageType,
+      chemin_page: window.location.pathname,
+      url_page: window.location.href,
+      titre_page: document.title
     }, params || {});
   }
 
@@ -118,17 +118,17 @@
       if (link) {
         const href = link.href || "";
         if (/\.pdf(\?|#|$)/i.test(href)) {
-          track("ash_pdf_click", {
-            asset_type: "pdf",
-            link_text: link.textContent.trim(),
+          track("ash_clic_pdf", {
+            type_fichier: "pdf",
+            texte_lien: link.textContent.trim(),
             destination: href
           });
         }
 
         if (href.includes("payhip.com/")) {
-          track("ash_payhip_click", {
+          track("ash_clic_payhip", {
             destination: href,
-            link_text: link.textContent.trim(),
+            texte_lien: link.textContent.trim(),
             value: 17,
             currency: "EUR"
           });
@@ -136,8 +136,8 @@
       }
 
       if (submit && submit.closest(".leadForm")) {
-        track("ash_lead_submit_click", {
-          form_name: "emailoctopus_sel_pdf"
+        track("ash_clic_formulaire_email", {
+          nom_formulaire: "formulaire_pdf_sel"
         });
       }
     }, true);
@@ -147,16 +147,16 @@
     document.addEventListener("focusin", (event) => {
       if (!emailFocusTracked && event.target.matches('.leadForm input[type="email"]')) {
         emailFocusTracked = true;
-        track("ash_lead_email_focus", {
-          form_name: "emailoctopus_sel_pdf"
+        track("ash_email_commence", {
+          nom_formulaire: "formulaire_pdf_sel"
         });
       }
     });
 
     document.addEventListener("submit", (event) => {
       if (event.target.closest(".leadForm")) {
-        track("ash_lead_submit", {
-          form_name: "emailoctopus_sel_pdf"
+        track("ash_formulaire_envoye", {
+          nom_formulaire: "formulaire_pdf_sel"
         });
       }
     }, true);
@@ -168,7 +168,7 @@
       videoMilestones.set(video, new Set());
 
       video.addEventListener("play", () => {
-        track("ash_video_play", { video_name: videoName });
+        track("ash_video_lancee", { nom_video: videoName });
       }, { once: true });
 
       video.addEventListener("timeupdate", () => {
@@ -178,16 +178,16 @@
         [25, 50, 75].forEach((milestone) => {
           if (percent >= milestone && !reached.has(milestone)) {
             reached.add(milestone);
-            track("ash_video_progress", {
-              video_name: videoName,
-              progress_percent: milestone
+            track("ash_video_progression", {
+              nom_video: videoName,
+              progression_pourcent: milestone
             });
           }
         });
       });
 
       video.addEventListener("ended", () => {
-        track("ash_video_complete", { video_name: videoName });
+        track("ash_video_terminee", { nom_video: videoName });
       });
     });
   }
@@ -200,7 +200,7 @@
 
       const videoName = video.dataset.trackVideo || "video";
       shell.dataset.videoStarted = "1";
-      track("ash_video_cover_click", { video_name: videoName });
+      track("ash_clic_jaquette_video", { nom_video: videoName });
       shell.classList.add("is-playing");
       video.controls = true;
       video.play().catch(() => {
@@ -231,7 +231,7 @@
     bindForms();
     bindVideoCovers();
     bindVideos();
-    track("ash_page_view");
+    track("ash_visite_page");
   }
 
   window.ashTrack = track;

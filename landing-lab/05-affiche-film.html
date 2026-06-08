@@ -9,8 +9,8 @@
     window.ASH_TRACKING = {
       gaId: "G-4R50L7W8XE",
       clarityId: "",
-      pageType: "landing_sel",
-      funnel: "sel_to_protection"
+      pageType: "page_sel_gratuite",
+      funnel: "sel_vers_protection"
     };
   </script>
   <script defer src="../assets/tracking.js"></script>
@@ -520,7 +520,7 @@
 
           <aside class="videoCard" aria-label="Vidéo d'introduction au protocole SEL">
             <div class="videoShell">
-              <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg" data-track-video="sel_landing_intro">
+              <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg" data-track-video="video_intro_sel">
                 <source src="../assets/videos/ash_sel_landing_video.mp4" type="video/mp4">
               </video>
               <button class="videoCover" type="button" aria-label="Lire la vidéo d'introduction" onclick="window.startAshVideoCover && window.startAshVideoCover(this)">
@@ -597,8 +597,8 @@
 
     document.addEventListener("emailoctopus:form.success", () => {
       if (window.ashTrackNavigate) {
-        window.ashTrackNavigate("ash_lead_success", {
-          form_name: "emailoctopus_sel_pdf",
+        window.ashTrackNavigate("ash_inscription_reussie", {
+          nom_formulaire: "formulaire_pdf_sel",
           destination: THANK_YOU_URL
         }, THANK_YOU_URL);
         return;

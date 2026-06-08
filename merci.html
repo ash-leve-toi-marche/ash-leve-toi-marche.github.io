@@ -8,8 +8,8 @@
     window.ASH_TRACKING = {
       gaId: "G-4R50L7W8XE",
       clarityId: "",
-      pageType: "merci_sel",
-      funnel: "sel_to_protection"
+      pageType: "page_remerciement",
+      funnel: "sel_vers_protection"
     };
   </script>
   <script defer src="assets/tracking.js"></script>
@@ -27,9 +27,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 28px;
+      padding: clamp(22px, 4vw, 56px);
       color: var(--bone);
       background:
         linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.58), rgba(0,0,0,.82)),
@@ -40,11 +38,17 @@
       letter-spacing: 0;
     }
     main {
-      width: min(920px, 100%);
+      width: min(980px, 100%);
+      margin: 0 auto;
       border: 1px solid var(--line);
       background: rgba(7,6,5,.82);
       padding: clamp(24px, 5vw, 54px);
       box-shadow: 0 24px 90px rgba(0,0,0,.55);
+    }
+    .receipt {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
     }
     .kicker {
       margin-bottom: 18px;
@@ -60,12 +64,14 @@
     }
     p {
       max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
       color: var(--muted);
       font-size: 20px;
     }
     .videoFrame {
-      width: min(360px, 100%);
-      margin-top: 24px;
+      width: min(420px, 100%);
+      margin: 28px auto 0;
       padding: 10px;
       border: 1px solid var(--line);
       background: rgba(0,0,0,.38);
@@ -160,6 +166,7 @@
     .actions {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 12px;
       margin-top: 28px;
     }
@@ -205,6 +212,8 @@
     }
     @media (max-width: 720px) {
       body { padding: 14px; }
+      main { width: 100%; }
+      .receipt { text-align: left; }
       .offer { grid-template-columns: 1fr; }
       .button { width: 100%; }
       .videoFrame { width: 100%; }
@@ -213,27 +222,29 @@
 </head>
 <body>
   <main>
-    <div class="kicker">Protocole reçu</div>
-    <h1>Commence par le PDF gratuit.</h1>
-    <p>Lis-le calmement. Ne cherche pas un signe partout. Cherche la porte que tu continues d'ouvrir, puis fais une action dans les 24 heures.</p>
-    <div class="actions">
-      <a class="button" href="assets/protocole_sel_gratuit.pdf?v=6aa1382" data-track-pdf="protocole_sel_gratuit">Ouvrir le PDF</a>
-      <a class="button secondary" href="funnel-sel.html">Retour</a>
-    </div>
-    <div class="videoFrame" aria-label="Vidéo de suite du protocole SEL">
-      <div class="videoShell">
-        <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg" data-track-video="protection_merci_upsell">
-          <source src="assets/videos/ash_protection_merci_video.mp4" type="video/mp4">
-        </video>
-        <button class="videoCover" type="button" aria-label="Lire la vidéo de suite" onclick="window.startAshVideoCover && window.startAshVideoCover(this)">
-          <span class="videoPrompt">
-            <span class="playMark" aria-hidden="true"></span>
-            <strong>Lire la vidéo</strong>
-            <span>La suite logique si tu veux aller plus loin.</span>
-          </span>
-        </button>
+    <section class="receipt">
+      <div class="kicker">Protocole reçu</div>
+      <h1>Commence par le PDF gratuit.</h1>
+      <p>Lis-le calmement. Ne cherche pas un signe partout. Cherche la porte que tu continues d'ouvrir, puis fais une action dans les 24 heures.</p>
+      <div class="actions">
+        <a class="button" href="assets/protocole_sel_gratuit.pdf?v=6aa1382" data-track-pdf="protocole_sel_gratuit">Ouvrir le PDF</a>
+        <a class="button secondary" href="funnel-sel.html">Retour</a>
       </div>
-    </div>
+      <div class="videoFrame" aria-label="Vidéo de suite du protocole SEL">
+        <div class="videoShell">
+          <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg" data-track-video="video_suite_protection">
+            <source src="assets/videos/ash_protection_merci_video.mp4" type="video/mp4">
+          </video>
+          <button class="videoCover" type="button" aria-label="Lire la vidéo de suite" onclick="window.startAshVideoCover && window.startAshVideoCover(this)">
+            <span class="videoPrompt">
+              <span class="playMark" aria-hidden="true"></span>
+              <strong>Lire la vidéo</strong>
+              <span>La suite logique si tu veux aller plus loin.</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
     <section class="offer">
       <div>
         <div class="kicker">Suite logique</div>
