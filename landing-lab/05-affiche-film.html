@@ -110,11 +110,96 @@
 
     .heroVideo {
       display: block;
+      position: relative;
+      z-index: 1;
       width: 100%;
       max-height: 570px;
       aspect-ratio: 9 / 16;
       object-fit: cover;
       background: #000;
+      transition: opacity .18s ease;
+    }
+
+    .videoShell {
+      position: relative;
+      overflow: hidden;
+      background: #050403;
+    }
+
+    .videoShell.is-ready:not(.is-playing) .heroVideo {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .videoCover {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      border: 0;
+      color: var(--bone);
+      background:
+        linear-gradient(180deg, rgba(5,5,4,.14), rgba(5,5,4,.92)),
+        radial-gradient(circle at 50% 38%, rgba(212,173,95,.28), transparent 9rem),
+        linear-gradient(135deg, rgba(12,10,7,.94), rgba(0,0,0,.98));
+      cursor: pointer;
+      text-align: center;
+      padding: 28px;
+    }
+
+    .videoShell.is-ready .videoCover {
+      display: grid;
+      place-items: center;
+    }
+
+    .videoShell.is-playing .videoCover {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .videoShell.is-playing .heroVideo {
+      pointer-events: auto;
+    }
+
+    .videoPrompt {
+      display: grid;
+      gap: 12px;
+      justify-items: center;
+    }
+
+    .playMark {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(212,173,95,.78);
+      border-radius: 999px;
+      background: rgba(212,173,95,.12);
+      box-shadow: 0 0 36px rgba(212,173,95,.22);
+    }
+
+    .playMark::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 5px;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-left: 19px solid var(--gold);
+    }
+
+    .videoCover strong {
+      font: 900 14px Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .videoCover span:last-child {
+      max-width: 220px;
+      color: rgba(244,239,229,.68);
+      font-size: 13px;
+      line-height: 1.35;
     }
 
     .topline {
@@ -429,9 +514,18 @@
           </div>
 
           <aside class="videoCard" aria-label="Vidéo d'introduction au protocole SEL">
-            <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg" data-track-video="sel_landing_intro">
-              <source src="../assets/videos/ash_sel_landing_video.mp4" type="video/mp4">
-            </video>
+            <div class="videoShell">
+              <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg" data-track-video="sel_landing_intro">
+                <source src="../assets/videos/ash_sel_landing_video.mp4" type="video/mp4">
+              </video>
+              <button class="videoCover" type="button" aria-label="Lire la vidéo d'introduction" onclick="window.startAshVideoCover && window.startAshVideoCover(this)">
+                <span class="videoPrompt">
+                  <span class="playMark" aria-hidden="true"></span>
+                  <strong>Lire la vidéo</strong>
+                  <span>38 secondes pour poser le cadre avant le PDF.</span>
+                </span>
+              </button>
+            </div>
           </aside>
 
           <div class="leadForm emailoctopus-embed" id="leadForm">

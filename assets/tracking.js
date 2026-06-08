@@ -192,12 +192,44 @@
     });
   }
 
+  function bindVideoCovers() {
+    window.startAshVideoCover = function (cover) {
+      const shell = cover && cover.closest(".videoShell");
+      const video = shell && shell.querySelector("video");
+      if (!shell || !video || shell.dataset.videoStarted === "1") return;
+
+      const videoName = video.dataset.trackVideo || "video";
+      shell.dataset.videoStarted = "1";
+      track("ash_video_cover_click", { video_name: videoName });
+      shell.classList.add("is-playing");
+      video.controls = true;
+      video.play().catch(() => {
+        shell.dataset.videoStarted = "";
+        shell.classList.remove("is-playing");
+        video.controls = false;
+      });
+    };
+
+    document.querySelectorAll(".videoShell").forEach((shell) => {
+      const video = shell.querySelector("video");
+      const cover = shell.querySelector(".videoCover");
+      if (!video || !cover) return;
+
+      shell.classList.add("is-ready");
+      video.controls = false;
+
+      cover.addEventListener("click", () => window.startAshVideoCover(cover));
+      video.addEventListener("play", () => shell.classList.add("is-playing"));
+    });
+  }
+
   function init() {
     loadGa();
     loadClarity();
     decoratePayhipLinks();
     bindClicks();
     bindForms();
+    bindVideoCovers();
     bindVideos();
     track("ash_page_view");
   }

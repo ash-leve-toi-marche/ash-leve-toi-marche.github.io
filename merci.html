@@ -73,10 +73,84 @@
     }
     .videoFrame video {
       display: block;
+      position: relative;
+      z-index: 1;
       width: 100%;
       aspect-ratio: 9 / 16;
       object-fit: cover;
       background: #000;
+      transition: opacity .18s ease;
+    }
+    .videoShell {
+      position: relative;
+      overflow: hidden;
+      background: #050403;
+    }
+    .videoShell.is-ready:not(.is-playing) video {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .videoCover {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      border: 0;
+      color: var(--bone);
+      background:
+        linear-gradient(180deg, rgba(7,6,5,.18), rgba(7,6,5,.92)),
+        radial-gradient(circle at 50% 38%, rgba(201,164,90,.30), transparent 9rem),
+        linear-gradient(135deg, rgba(12,10,7,.94), rgba(0,0,0,.98));
+      cursor: pointer;
+      text-align: center;
+      padding: 28px;
+    }
+    .videoShell.is-ready .videoCover {
+      display: grid;
+      place-items: center;
+    }
+    .videoShell.is-playing .videoCover {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .videoShell.is-playing video {
+      pointer-events: auto;
+    }
+    .videoPrompt {
+      display: grid;
+      gap: 12px;
+      justify-items: center;
+    }
+    .playMark {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(201,164,90,.78);
+      border-radius: 999px;
+      background: rgba(201,164,90,.12);
+      box-shadow: 0 0 36px rgba(201,164,90,.22);
+    }
+    .playMark::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 5px;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-left: 19px solid var(--gold);
+    }
+    .videoCover strong {
+      font: 900 14px Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+    .videoCover span:last-child {
+      max-width: 220px;
+      color: rgba(232,220,195,.68);
+      font-size: 13px;
+      line-height: 1.35;
     }
     .actions {
       display: flex;
@@ -142,9 +216,18 @@
       <a class="button secondary" href="funnel-sel.html">Retour</a>
     </div>
     <div class="videoFrame" aria-label="Vidéo de suite du protocole SEL">
-      <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg" data-track-video="protection_merci_upsell">
-        <source src="assets/videos/ash_protection_merci_video.mp4" type="video/mp4">
-      </video>
+      <div class="videoShell">
+        <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg" data-track-video="protection_merci_upsell">
+          <source src="assets/videos/ash_protection_merci_video.mp4" type="video/mp4">
+        </video>
+        <button class="videoCover" type="button" aria-label="Lire la vidéo de suite" onclick="window.startAshVideoCover && window.startAshVideoCover(this)">
+          <span class="videoPrompt">
+            <span class="playMark" aria-hidden="true"></span>
+            <strong>Lire la vidéo</strong>
+            <span>La suite logique si tu veux aller plus loin.</span>
+          </span>
+        </button>
+      </div>
     </div>
     <section class="offer">
       <div>
