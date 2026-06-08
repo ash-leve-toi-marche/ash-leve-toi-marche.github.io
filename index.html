@@ -3,582 +3,105 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ASH - Protocoles pour reprendre ta place</title>
-  <meta name="description" content="ASH - Leve-toi et marche. Des protocoles simples pour fermer les portes que tu continues d'ouvrir.">
-  <meta property="og:title" content="ASH - Protocole SEL">
-  <meta property="og:description" content="Fermer les portes que tu continues d'ouvrir. Sel, limite, action.">
-  <meta property="og:image" content="https://ash-leve-toi-marche.github.io/assets/ash_portrait.jpg">
+  <title>ASH - Protocole SEL gratuit</title>
+  <meta name="description" content="Reçois le protocole SEL gratuit : un cadre court pour poser une limite, couper l'alimentation et faire une action concrete.">
+  <meta property="og:title" content="ASH - Protocole SEL gratuit">
+  <meta property="og:description" content="Tu ne proteges pas ce que tu nourris. Regarde la video et recois le protocole SEL gratuit.">
+  <meta property="og:image" content="https://ash-leve-toi-marche.github.io/assets/payhip_protocole_protection_square.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ash-leve-toi-marche.github.io/landing-lab/05-affiche-film.html">
+  <link rel="canonical" href="https://ash-leve-toi-marche.github.io/landing-lab/05-affiche-film.html">
+  <script>
+    (function () {
+      var target = new URL("landing-lab/05-affiche-film.html", window.location.href);
+      target.search = window.location.search;
+      target.hash = window.location.hash;
+      window.location.replace(target.toString());
+    })();
+  </script>
   <style>
     :root {
       color-scheme: dark;
-      --ash: #080807;
-      --ink: #f6f2e8;
-      --muted: #b8b0a2;
-      --line: rgba(246, 242, 232, .16);
-      --panel: rgba(246, 242, 232, .07);
-      --teal: #11a391;
-      --red: #c53d2d;
-      --gold: #d5b46b;
-      --paper: #efe8d8;
-      --black: #050504;
+      --ash-black: #040403;
+      --ash-cream: #f5efe1;
+      --ash-gold: #d6b45e;
+      --ash-muted: rgba(245, 239, 225, .72);
+      --ash-line: rgba(214, 180, 94, .42);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px;
       background:
-        radial-gradient(circle at 75% 20%, rgba(197, 61, 45, .24), transparent 28rem),
-        radial-gradient(circle at 15% 88%, rgba(17, 163, 145, .18), transparent 24rem),
-        linear-gradient(135deg, #050504 0%, #11100e 48%, #090807 100%);
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        radial-gradient(circle at 72% 18%, rgba(214, 180, 94, .13), transparent 26rem),
+        linear-gradient(135deg, #050504 0%, #11100e 48%, #040403 100%);
+      color: var(--ash-cream);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
     }
 
-    a {
-      color: inherit;
+    main {
+      width: min(620px, 100%);
+      border: 1px solid var(--ash-line);
+      padding: clamp(28px, 7vw, 52px);
+      background: rgba(4, 4, 3, .72);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .34);
     }
 
-    .shell {
-      width: min(1160px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      border-bottom: 1px solid var(--line);
-      background: rgba(8, 8, 7, .78);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-    }
-
-    .mark {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line);
-      background: var(--ink);
-      color: var(--black);
-      font-weight: 950;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 14px;
+    p:first-child {
+      margin: 0 0 16px;
+      color: var(--ash-gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .82rem;
       font-weight: 800;
-    }
-
-    .links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .hero {
-      min-height: calc(100vh - 68px);
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr);
-      gap: 44px;
-      align-items: center;
-      padding: 46px 0 34px;
-    }
-
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      color: var(--gold);
-      font-weight: 900;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: .08em;
-    }
-
-    .kicker:before {
-      content: "";
-      width: 38px;
-      height: 3px;
-      background: var(--gold);
     }
 
     h1 {
       margin: 0;
-      max-width: 780px;
-      font-size: clamp(48px, 8vw, 104px);
-      line-height: .88;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 9vw, 4.8rem);
+      line-height: .92;
       letter-spacing: 0;
+      text-transform: uppercase;
     }
 
-    .lead {
-      max-width: 680px;
-      margin: 24px 0 0;
-      color: #ddd3c3;
-      font-size: clamp(18px, 2.1vw, 25px);
-      line-height: 1.34;
-      font-weight: 650;
+    p {
+      max-width: 34rem;
+      margin: 22px 0 0;
+      color: var(--ash-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
     }
 
-    .truth {
-      margin: 26px 0 0;
-      padding: 18px 0 0;
-      border-top: 1px solid var(--line);
-      max-width: 640px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .button {
-      min-height: 50px;
+    a {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid transparent;
-      padding: 0 20px;
-      text-decoration: none;
-      font-weight: 950;
-      border-radius: 4px;
-      background: var(--teal);
-      color: var(--black);
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--ink);
-      border-color: var(--line);
-    }
-
-    .portraitWrap {
-      position: relative;
-    }
-
-    .portrait {
-      position: relative;
-      min-height: 620px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: var(--panel);
-    }
-
-    .portrait img {
-      width: 100%;
-      height: 100%;
-      min-height: 620px;
-      display: block;
-      object-fit: cover;
-      object-position: center top;
-      filter: contrast(1.08) saturate(.9);
-    }
-
-    .portrait:after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(8, 8, 7, 0) 30%, rgba(8, 8, 7, .85) 100%);
-    }
-
-    .quote {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      z-index: 2;
-      padding: 18px;
-      border-left: 5px solid var(--red);
-      background: rgba(8, 8, 7, .72);
-      backdrop-filter: blur(10px);
-      font-size: 28px;
-      line-height: 1;
-      font-weight: 950;
-      text-transform: uppercase;
-    }
-
-    section {
-      padding: 74px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .sectionHead {
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(280px, .6fr);
-      gap: 24px;
-      align-items: end;
-      margin-bottom: 28px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(34px, 5vw, 64px);
-      line-height: .95;
-      letter-spacing: 0;
-    }
-
-    .sectionHead p,
-    .bodyText {
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.55;
-    }
-
-    .protocolGrid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .protocol {
-      display: flex;
-      min-height: 310px;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-      border: 1px solid var(--line);
-      background: rgba(246, 242, 232, .06);
-      text-decoration: none;
-    }
-
-    .protocol.active {
-      background: linear-gradient(160deg, rgba(17, 163, 145, .24), rgba(246, 242, 232, .06));
-    }
-
-    .tag {
-      width: fit-content;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 950;
-      text-transform: uppercase;
-    }
-
-    .protocol h3 {
-      margin: 70px 0 14px;
-      font-size: 30px;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .protocol p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.48;
-    }
-
-    .leadPanel {
-      display: grid;
-      grid-template-columns: minmax(0, .85fr) minmax(320px, .65fr);
-      gap: 22px;
-      align-items: stretch;
-      background: var(--paper);
-      color: var(--black);
-      padding: clamp(22px, 4vw, 42px);
-    }
-
-    .leadPanel h2 {
-      color: var(--black);
-    }
-
-    .leadPanel p {
-      margin: 18px 0 0;
-      color: #4c4539;
-      font-size: 18px;
-      line-height: 1.5;
-      font-weight: 650;
-    }
-
-    .signup {
-      background: #fffaf0;
-      border: 1px solid rgba(5, 5, 4, .12);
-      padding: 20px;
-    }
-
-    .signup label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 13px;
-      text-transform: uppercase;
-      font-weight: 950;
-      color: #5b5141;
-    }
-
-    .signup input {
-      width: 100%;
-      height: 52px;
-      border: 1px solid rgba(5, 5, 4, .18);
-      border-radius: 3px;
-      padding: 0 14px;
-      margin-bottom: 10px;
-      font: inherit;
-      color: var(--black);
-      background: #fff;
-    }
-
-    .signup .button {
-      width: 100%;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .formStatus {
-      margin-top: 12px;
-      color: #5c4d35;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .manifesto {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-
-    .manifesto div {
-      min-height: 170px;
-      padding: 18px;
-      background: var(--ash);
-    }
-
-    .manifesto b {
-      display: block;
-      margin-bottom: 12px;
-      color: var(--gold);
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    .manifesto span {
-      display: block;
-      font-size: 21px;
+      margin-top: 28px;
+      padding: 16px 22px;
+      border: 1px solid var(--ash-gold);
+      background: var(--ash-gold);
+      color: var(--ash-black);
       font-weight: 900;
-      line-height: 1.1;
-    }
-
-    footer {
-      padding: 34px 0 46px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-      border-top: 1px solid var(--line);
-    }
-
-    @media (max-width: 900px) {
-      .links {
-        display: none;
-      }
-
-      .hero,
-      .sectionHead,
-      .leadPanel {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 36px;
-      }
-
-      .portrait,
-      .portrait img {
-        min-height: 520px;
-      }
-
-      .protocolGrid {
-        grid-template-columns: 1fr;
-      }
-
-      .manifesto {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .shell {
-        width: min(100% - 24px, 1160px);
-      }
-
-      .nav {
-        min-height: 58px;
-      }
-
-      .brand {
-        font-size: 13px;
-      }
-
-      .mark {
-        width: 30px;
-        height: 30px;
-      }
-
-      .portrait,
-      .portrait img {
-        min-height: 430px;
-      }
-
-      .quote {
-        font-size: 21px;
-      }
-
-      section {
-        padding: 50px 0;
-      }
-
-      .manifesto {
-        grid-template-columns: 1fr;
-      }
+      letter-spacing: .1em;
+      text-decoration: none;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="shell nav" aria-label="Navigation principale">
-      <a class="brand" href="#top">
-        <span class="mark">A</span>
-        <span>ASH · Leve-toi et marche</span>
-      </a>
-      <div class="links">
-        <a href="#protocoles">Protocoles</a>
-        <a href="#pdf">PDF gratuit</a>
-        <a href="#manifeste">Manifeste</a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section class="shell hero">
-      <div>
-        <div class="kicker">Pas de magie. Une decision.</div>
-        <h1>Ferme les portes que tu continues d'ouvrir.</h1>
-        <p class="lead">ASH n'est pas la pour te vendre un objet sacre. ASH est la pour te remettre debout : foi, limite, discipline, action.</p>
-        <p class="truth">Le protocole SEL est le premier cadre gratuit. Tu le fais sans panique, sans superstition, sans theatre. Tu nommes la porte, tu poses un signe, puis tu fais un acte concret dans les 24 heures.</p>
-        <div class="actions">
-          <a class="button" href="funnel-sel.html">Recevoir le protocole</a>
-          <a class="button secondary" href="#protocoles">Voir les prochains protocoles</a>
-        </div>
-      </div>
-      <div class="portraitWrap" aria-label="Portrait ASH">
-        <div class="portrait">
-          <img src="assets/ash_portrait.jpg" alt="ASH face camera">
-        </div>
-        <div class="quote">Le rituel ne remplace jamais la limite.</div>
-      </div>
-    </section>
-
-    <section id="protocoles" class="shell">
-      <div class="sectionHead">
-        <h2>Les protocoles ASH</h2>
-        <p>Le site est construit pour grandir. Aujourd'hui : SEL. Demain : couper un lien, nettoyer une journee, sortir de la peur, remettre de l'ordre.</p>
-      </div>
-      <div class="protocolGrid">
-        <a class="protocol active" href="#pdf">
-          <div class="tag">Disponible</div>
-          <div>
-            <h3>Protocole SEL</h3>
-            <p>Fermer une porte sans tomber dans la peur : sel, eau, priere, limite, action.</p>
-          </div>
-        </a>
-        <div class="protocol">
-          <div class="tag">Bientot</div>
-          <div>
-            <h3>Couper un lien</h3>
-            <p>Arreter de nourrir une relation, une pensee ou une conversation qui te vide.</p>
-          </div>
-        </div>
-        <div class="protocol">
-          <div class="tag">Bientot</div>
-          <div>
-            <h3>Ne dors pas avec ca</h3>
-            <p>Un protocole du soir pour ne pas ramener toute la journee dans ton lit.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pdf" class="shell">
-      <div class="leadPanel">
-        <div>
-          <div class="kicker">PDF gratuit</div>
-          <h2>Protocole SEL</h2>
-          <p>Tu veux le sel ? Prends aussi la responsabilite qui va avec. Ce PDF te donne un cadre simple : nommer la porte, poser le signe, puis poser une action concrete.</p>
-          <p>Version actuelle : inscription via EmailOctopus, puis ouverture du PDF sur la page merci.</p>
-        </div>
-        <div class="signup">
-          <a class="button" href="funnel-sel.html">Recevoir le PDF</a>
-          <div class="formStatus">Le formulaire EmailOctopus est sur la page du protocole.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="manifeste" class="shell">
-      <div class="sectionHead">
-        <h2>La ligne ASH</h2>
-        <p>Ce n'est pas du developpement personnel sucre. C'est court, direct, spirituel, et oriente action.</p>
-      </div>
-      <div class="manifesto">
-        <div>
-          <b>01</b>
-          <span>Tu ne gueris pas ce que tu continues a nourrir.</span>
-        </div>
-        <div>
-          <b>02</b>
-          <span>La foi sans limite devient fatigue.</span>
-        </div>
-        <div>
-          <b>03</b>
-          <span>Un signe ne vaut rien sans un acte.</span>
-        </div>
-        <div>
-          <b>04</b>
-          <span>Reprendre ta place commence aujourd'hui.</span>
-        </div>
-      </div>
-    </section>
+  <main>
+    <p>ASH - Leve-toi et marche</p>
+    <h1>Protocole SEL</h1>
+    <p>Redirection vers la page actuelle. Si rien ne se passe, utilise le bouton ci-dessous.</p>
+    <a href="landing-lab/05-affiche-film.html">Ouvrir la page</a>
   </main>
-
-  <footer>
-    <div class="shell">
-      ASH - Leve-toi et marche. Ce contenu est spirituel et introspectif. Il ne remplace pas un avis medical, psychologique, juridique ou religieux personnalise.
-    </div>
-  </footer>
-
 </body>
 </html>
