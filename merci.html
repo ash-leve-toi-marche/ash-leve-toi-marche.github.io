@@ -54,6 +54,21 @@
       color: var(--muted);
       font-size: 20px;
     }
+    .videoFrame {
+      width: min(360px, 100%);
+      margin-top: 24px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.38);
+      box-shadow: 0 22px 70px rgba(0,0,0,.38);
+    }
+    .videoFrame video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #000;
+    }
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -90,6 +105,11 @@
       color: var(--gold);
       font: 900 52px / 1 Cinzel, serif;
     }
+    .payhip-note {
+      margin-top: 10px;
+      color: rgba(232,220,195,.62);
+      font-size: 14px;
+    }
     ul {
       margin: 12px 0 0;
       padding-left: 19px;
@@ -99,6 +119,7 @@
       body { padding: 14px; }
       .offer { grid-template-columns: 1fr; }
       .button { width: 100%; }
+      .videoFrame { width: 100%; }
     }
   </style>
 </head>
@@ -111,19 +132,26 @@
       <a class="button" href="assets/protocole_sel_gratuit.pdf?v=6aa1382">Ouvrir le PDF</a>
       <a class="button secondary" href="funnel-sel.html">Retour</a>
     </div>
+    <div class="videoFrame" aria-label="Vidéo de suite du protocole SEL">
+      <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg">
+        <source src="assets/videos/ash_protection_merci_video.mp4" type="video/mp4">
+      </video>
+    </div>
     <section class="offer">
       <div>
         <div class="kicker">Suite logique</div>
         <h2>7 jours de protection sans bullshit.</h2>
-        <p>Le produit payant sera proposé ici quand le checkout Payhip sera prêt. Pas avant : on vend proprement, pas dans le flou.</p>
+        <p>Le PDF SEL pose le premier geste. Le protocole complet te guide pendant 7 jours : regard, parole, peur, corps, liens, prière et action finale.</p>
       </div>
       <aside>
         <div class="price">17 €</div>
         <ul>
-          <li>PDF 7 jours</li>
-          <li>Bonus audio prière</li>
+          <li>PDF complet 7 jours</li>
           <li>Checklist quotidienne</li>
+          <li>Livraison automatique Payhip</li>
         </ul>
+        <a class="button" href="https://payhip.com/b/TV0tN">Accéder au protocole</a>
+        <p class="payhip-note">Paiement sécurisé. Le PDF est envoyé automatiquement après achat.</p>
       </aside>
     </section>
   </main>

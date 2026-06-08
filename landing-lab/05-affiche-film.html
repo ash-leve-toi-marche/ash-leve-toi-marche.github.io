@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASH - Protocole SEL gratuit</title>
+  <meta name="description" content="Reçois le Protocole SEL gratuit, puis continue avec le Protocole de Protection 7 jours.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@600;800;900&family=Inter:wght@500;700;900&display=swap');
+
+    :root {
+      color-scheme: dark;
+      --ash: #090705;
+      --bone: #f4efe5;
+      --gold: #d4ad5f;
+      --muted: rgba(244, 239, 229, .72);
+      --line: rgba(212, 173, 95, .36);
+      --veil: rgba(5, 5, 4, .74);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--ash);
+      color: var(--bone);
+      font-family: Inter, system-ui, sans-serif;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.46) 48%, rgba(0,0,0,.86)),
+        url('../assets/ash_ritual_portrait.png') 72% center / auto 115% no-repeat,
+        #050403;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .24;
+      background:
+        radial-gradient(circle at 74% 24%, rgba(212,173,95,.32), transparent 22rem),
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: auto, 44px 44px;
+    }
+
+    a { color: inherit; }
+    .stage {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(14px, 3.4vw, 42px);
+    }
+
+    .poster {
+      width: min(1160px, 100%);
+      min-height: min(760px, calc(100vh - 28px));
+      padding: clamp(28px, 4vw, 52px);
+      border: 1px solid rgba(244,239,229,.2);
+      background:
+        linear-gradient(180deg, rgba(5,5,4,.06), rgba(5,5,4,.88)),
+        linear-gradient(90deg, rgba(5,5,4,.90), rgba(5,5,4,.25) 64%, rgba(5,5,4,.78));
+      box-shadow: 0 24px 90px rgba(0,0,0,.58);
+    }
+
+    .heroGrid {
+      min-height: calc(min(760px, calc(100vh - 28px)) - clamp(56px, 8vw, 104px));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(270px, 330px);
+      grid-template-areas:
+        "copy video"
+        "form video";
+      gap: 22px 40px;
+      align-items: end;
+    }
+
+    .heroCopy {
+      grid-area: copy;
+      align-self: start;
+      display: grid;
+      gap: 22px;
+    }
+
+    .videoCard {
+      grid-area: video;
+      align-self: center;
+      padding: 10px;
+      border: 1px solid rgba(212,173,95,.42);
+      background: rgba(5,5,4,.72);
+      box-shadow: 0 22px 70px rgba(0,0,0,.42);
+    }
+
+    .heroVideo {
+      display: block;
+      width: 100%;
+      max-height: 570px;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--gold);
+      font: 900 12px Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    .tag {
+      max-width: 760px;
+      color: var(--gold);
+      font: 900 clamp(13px, 2vw, 18px) Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin: 14px 0 0;
+      font: 400 clamp(56px, 5.2vw, 78px) / .94 Anton, Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .lower {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .66fr);
+      gap: 24px;
+      align-items: end;
+    }
+
+    .lead {
+      max-width: 600px;
+      margin: 0;
+      color: #e6dbc9;
+      font-size: clamp(20px, 1.85vw, 25px);
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .truth {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .leadForm {
+      grid-area: form;
+      width: min(100%, 610px);
+      background: var(--veil);
+      border: 1px solid var(--line);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .leadForm > span,
+    .leadForm label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font: 900 12px Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+    }
+
+    .emailoctopus-embed [data-form] {
+      --text-colour: var(--bone);
+      --font-family: Inter, system-ui, sans-serif;
+      --button-colour: var(--gold);
+      --button-text-colour: #100d09;
+      --field-colour: #0d0c0a;
+      --field-border-colour: rgba(212,173,95,.5);
+      --label-colour: var(--gold);
+    }
+
+    .emailoctopus-embed [data-form] .form-container,
+    .emailoctopus-embed [data-form] .emailoctopus-form-wrapper {
+      padding: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+    }
+
+    .emailoctopus-embed [data-form] .main-form {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(160px, auto) !important;
+      gap: 10px !important;
+      align-items: stretch !important;
+    }
+
+    .emailoctopus-embed [data-form] input[type="email"] {
+      min-height: 54px !important;
+      min-width: 0 !important;
+      width: 100% !important;
+      border-radius: 0 !important;
+      background: #0d0c0a !important;
+      border: 1px solid rgba(212,173,95,.58) !important;
+      color: var(--bone) !important;
+      caret-color: var(--gold) !important;
+      padding: 0 16px !important;
+      font: 700 16px Inter, system-ui, sans-serif !important;
+    }
+
+    .emailoctopus-embed [data-form] input[type="submit"] {
+      min-height: 54px !important;
+      width: 100% !important;
+      border: 1px solid var(--gold) !important;
+      border-radius: 0 !important;
+      background: var(--gold) !important;
+      color: #100d09 !important;
+      padding: 0 18px !important;
+      font: 900 12px Cinzel, serif !important;
+      text-transform: uppercase !important;
+      letter-spacing: .1em !important;
+      cursor: pointer !important;
+    }
+
+    .emailoctopus-embed [data-form] .mastfoot,
+    .emailoctopus-embed [data-form] .emailoctopus-success-message,
+    .emailoctopus-embed [data-form] .emailoctopus-error-message {
+      color: rgba(244,239,229,.62) !important;
+      font-size: 12px !important;
+    }
+
+    .note {
+      margin: 10px 0 0;
+      color: rgba(244,239,229,.58);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .below {
+      width: min(1080px, calc(100% - 28px));
+      margin: 0 auto clamp(32px, 6vw, 70px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .point {
+      min-height: 170px;
+      padding: 26px;
+      border-right: 1px solid rgba(212,173,95,.22);
+      background: rgba(5,5,4,.58);
+    }
+
+    .point:last-child { border-right: 0; }
+    .point b {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--gold);
+      font: 900 13px Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+
+    .point span {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.42;
+      font-weight: 700;
+    }
+
+    .offer {
+      width: min(1080px, calc(100% - 28px));
+      margin: 0 auto 70px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .44fr);
+      gap: 24px;
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(5,5,4,.86), rgba(5,5,4,.56)),
+        url('../assets/payhip_protocole_protection_square.jpg') right center / min(430px, 45vw) auto no-repeat,
+        rgba(5,5,4,.78);
+    }
+
+    .offer h2 {
+      max-width: 650px;
+      margin: 0 0 12px;
+      font: 900 clamp(34px, 5vw, 64px) / .95 Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .offer p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .priceBox {
+      align-self: end;
+      padding: 20px;
+      border: 1px solid rgba(212,173,95,.5);
+      background: rgba(5,5,4,.72);
+    }
+
+    .price {
+      color: var(--gold);
+      font: 900 58px / 1 Cinzel, serif;
+    }
+
+    .button {
+      min-height: 54px;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #100d09;
+      text-decoration: none;
+      font: 900 12px Cinzel, serif;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    @media (max-width: 1020px) and (min-width: 781px) {
+      .poster {
+        width: min(840px, 100%);
+      }
+      .heroGrid {
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+        gap: 20px 28px;
+      }
+      h1 {
+        max-width: 520px;
+        font-size: clamp(48px, 5.6vw, 62px);
+        line-height: .96;
+      }
+      .lead {
+        font-size: 20px;
+      }
+      .truth {
+        font-size: 15px;
+      }
+      .heroVideo {
+        max-height: 520px;
+      }
+      .emailoctopus-embed [data-form] .main-form {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 780px) {
+      body::before { background-position: 64% top; background-size: auto 104%; }
+      .stage { place-items: start center; }
+      .poster { min-height: 0; padding: 28px; }
+      .heroGrid {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "copy"
+          "form"
+          "video";
+        gap: 18px;
+      }
+      .heroCopy { gap: 20px; }
+      h1 { font-size: 58px; }
+      .lead { font-size: 21px; }
+      .heroVideo { max-height: 70vh; }
+      .topline { display: block; }
+      .topline span:last-child { display: none; }
+      .lower, .offer { grid-template-columns: 1fr; }
+      .emailoctopus-embed [data-form] .main-form { grid-template-columns: 1fr !important; }
+      .emailoctopus-embed [data-form] input[type="submit"] { width: 100% !important; }
+      .below { grid-template-columns: 1fr; }
+      .point { min-height: 0; border-right: 0; border-bottom: 1px solid rgba(212,173,95,.22); }
+      .point:last-child { border-bottom: 0; }
+      .offer { background: rgba(5,5,4,.78); }
+    }
+
+    @media (max-width: 420px) {
+      .poster { padding: 22px; }
+      h1 { font-size: 50px; }
+      .tag { font-size: 13px; }
+      .lead { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stage">
+      <div class="poster">
+        <div class="heroGrid">
+          <div class="heroCopy">
+            <div class="topline">
+              <span>ASH - Lève-toi et marche</span>
+              <span>Protocole gratuit</span>
+            </div>
+
+            <div>
+              <div class="tag">SEL / protocole gratuit</div>
+              <h1>Tu ne protèges pas ce que tu nourris.</h1>
+            </div>
+
+            <p class="lead">Regarde la vidéo. Si le mot SEL t'a parlé, reçois le protocole gratuit.</p>
+            <p class="truth">Pas de panique, pas de promesse magique. Un cadre court : nommer ce qui te vide, poser une limite, faire une action concrète.</p>
+          </div>
+
+          <aside class="videoCard" aria-label="Vidéo d'introduction au protocole SEL">
+            <video class="heroVideo" controls playsinline preload="metadata" poster="../assets/videos/ash_sel_landing_video_poster.jpg">
+              <source src="../assets/videos/ash_sel_landing_video.mp4" type="video/mp4">
+            </video>
+          </aside>
+
+          <div class="leadForm emailoctopus-embed" id="leadForm">
+            <span>Recevoir le PDF gratuit</span>
+            <script async src="https://eocampaign1.com/form/f791868e-619e-11f1-aa1a-8347142401ef.js" data-form="f791868e-619e-11f1-aa1a-8347142401ef"></script>
+            <p class="note" id="formStatus">Le PDF s'ouvre juste après inscription. Tu pourras ensuite continuer avec le protocole 7 jours si tu veux aller plus loin.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="below" aria-label="Ce que le protocole met en place">
+      <div class="point"><b>Regard</b><span>Tu identifies ce qui te fragilise au lieu de faire comme si ce n'était rien.</span></div>
+      <div class="point"><b>Limite</b><span>Tu poses une frontière visible, simple, que tu peux tenir aujourd'hui.</span></div>
+      <div class="point"><b>Action</b><span>Tu sors du mental : une décision, un geste, une coupure concrète.</span></div>
+    </section>
+
+    <section class="offer" id="suite">
+      <div>
+        <div class="tag">Suite payante / 7 jours</div>
+        <h2>Protocole de Protection</h2>
+        <p>Le PDF SEL est l'entrée gratuite. Le protocole complet te guide pendant 7 jours : regard, parole, peur, corps, liens, prière et action finale. Un cadre pratique pour reprendre ta place sans tomber dans la paranoia.</p>
+      </div>
+      <aside class="priceBox">
+        <div class="price">17 €</div>
+        <p>PDF complet + checklist. Livraison automatique par Payhip.</p>
+        <a class="button" href="https://payhip.com/b/TV0tN">Accéder au protocole</a>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const THANK_YOU_URL = "../merci.html";
+
+    const patchEmailOctopusCopy = () => {
+      const wrapper = document.querySelector('[data-form="f791868e-619e-11f1-aa1a-8347142401ef"]');
+      const email = wrapper?.querySelector('input[type="email"]');
+      const submit = wrapper?.querySelector('input[type="submit"]');
+
+      if (email) {
+        email.placeholder = "Ton email pour recevoir le PDF";
+        email.style.setProperty("background-color", "#0d0c0a", "important");
+        email.style.setProperty("border-color", "rgba(212, 173, 95, .58)", "important");
+        email.style.setProperty("color", "#f4efe5", "important");
+        email.style.setProperty("caret-color", "#d4ad5f", "important");
+      }
+
+      if (submit) {
+        submit.value = "Recevoir le PDF";
+        submit.style.setProperty("background-color", "#d4ad5f", "important");
+        submit.style.setProperty("border-color", "#d4ad5f", "important");
+        submit.style.setProperty("color", "#100d09", "important");
+      }
+
+      return Boolean(email && submit);
+    };
+
+    if (!patchEmailOctopusCopy()) {
+      const patchInterval = window.setInterval(() => {
+        if (patchEmailOctopusCopy()) window.clearInterval(patchInterval);
+      }, 250);
+      window.setTimeout(() => window.clearInterval(patchInterval), 8000);
+    }
+
+    document.addEventListener("emailoctopus:form.success", () => {
+      window.location.href = THANK_YOU_URL;
+    });
+  </script>
+</body>
+</html>
