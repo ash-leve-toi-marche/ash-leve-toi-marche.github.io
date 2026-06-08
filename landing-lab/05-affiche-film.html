@@ -117,7 +117,7 @@
       aspect-ratio: 9 / 16;
       object-fit: cover;
       background: #000;
-      transition: opacity .18s ease;
+      transition: opacity .18s ease, filter .18s ease;
     }
 
     .videoShell {
@@ -127,7 +127,8 @@
     }
 
     .videoShell.is-ready:not(.is-playing) .heroVideo {
-      opacity: 0;
+      opacity: .52;
+      filter: blur(1px) brightness(.72) saturate(.85);
       pointer-events: none;
     }
 
@@ -140,9 +141,10 @@
       border: 0;
       color: var(--bone);
       background:
-        linear-gradient(180deg, rgba(5,5,4,.14), rgba(5,5,4,.92)),
-        radial-gradient(circle at 50% 38%, rgba(212,173,95,.28), transparent 9rem),
-        linear-gradient(135deg, rgba(12,10,7,.94), rgba(0,0,0,.98));
+        linear-gradient(180deg, rgba(5,5,4,.24), rgba(5,5,4,.68)),
+        radial-gradient(circle at 50% 38%, rgba(212,173,95,.30), transparent 9rem),
+        linear-gradient(135deg, rgba(12,10,7,.28), rgba(0,0,0,.58));
+      backdrop-filter: blur(1.5px) saturate(.8);
       cursor: pointer;
       text-align: center;
       padding: 28px;
@@ -160,6 +162,7 @@
 
     .videoShell.is-playing .heroVideo {
       pointer-events: auto;
+      filter: none;
     }
 
     .videoPrompt {
@@ -193,6 +196,7 @@
       font: 900 14px Cinzel, serif;
       text-transform: uppercase;
       letter-spacing: .18em;
+      text-shadow: 0 2px 18px rgba(0,0,0,.82);
     }
 
     .videoCover span:last-child {
@@ -200,6 +204,7 @@
       color: rgba(244,239,229,.68);
       font-size: 13px;
       line-height: 1.35;
+      text-shadow: 0 2px 18px rgba(0,0,0,.82);
     }
 
     .topline {

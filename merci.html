@@ -79,7 +79,7 @@
       aspect-ratio: 9 / 16;
       object-fit: cover;
       background: #000;
-      transition: opacity .18s ease;
+      transition: opacity .18s ease, filter .18s ease;
     }
     .videoShell {
       position: relative;
@@ -87,7 +87,8 @@
       background: #050403;
     }
     .videoShell.is-ready:not(.is-playing) video {
-      opacity: 0;
+      opacity: .52;
+      filter: blur(1px) brightness(.72) saturate(.85);
       pointer-events: none;
     }
     .videoCover {
@@ -99,9 +100,10 @@
       border: 0;
       color: var(--bone);
       background:
-        linear-gradient(180deg, rgba(7,6,5,.18), rgba(7,6,5,.92)),
+        linear-gradient(180deg, rgba(7,6,5,.24), rgba(7,6,5,.68)),
         radial-gradient(circle at 50% 38%, rgba(201,164,90,.30), transparent 9rem),
-        linear-gradient(135deg, rgba(12,10,7,.94), rgba(0,0,0,.98));
+        linear-gradient(135deg, rgba(12,10,7,.28), rgba(0,0,0,.58));
+      backdrop-filter: blur(1.5px) saturate(.8);
       cursor: pointer;
       text-align: center;
       padding: 28px;
@@ -116,6 +118,7 @@
     }
     .videoShell.is-playing video {
       pointer-events: auto;
+      filter: none;
     }
     .videoPrompt {
       display: grid;
@@ -145,12 +148,14 @@
       font: 900 14px Cinzel, serif;
       text-transform: uppercase;
       letter-spacing: .18em;
+      text-shadow: 0 2px 18px rgba(0,0,0,.82);
     }
     .videoCover span:last-child {
       max-width: 220px;
       color: rgba(232,220,195,.68);
       font-size: 13px;
       line-height: 1.35;
+      text-shadow: 0 2px 18px rgba(0,0,0,.82);
     }
     .actions {
       display: flex;
