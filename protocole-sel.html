@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASH - Protocole SEL gratuit</title>
+  <meta name="description" content="Lis le protocole SEL directement dans ton navigateur : nommer la porte, poser une limite, faire une action concrete.">
+  <script>
+    window.ASH_TRACKING = {
+      gaId: "G-4R50L7W8XE",
+      clarityId: "",
+      pageType: "lecture_protocole_sel",
+      funnel: "sel_vers_protection"
+    };
+  </script>
+  <script defer src="assets/tracking.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&family=IM+Fell+English:ital@0;1&display=swap');
+    :root {
+      color-scheme: dark;
+      --ash: #070605;
+      --ink: #0d0a07;
+      --bone: #efe6d4;
+      --muted: rgba(239,230,212,.74);
+      --soft: rgba(239,230,212,.58);
+      --gold: #d4af62;
+      --line: rgba(212,175,98,.34);
+      --panel: rgba(7,6,5,.84);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--bone);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.68), rgba(0,0,0,.9)),
+        url("assets/grimoire_cover_dark.png") center / cover fixed,
+        var(--ash);
+      font-family: "IM Fell English", Georgia, serif;
+      line-height: 1.48;
+      letter-spacing: 0;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(212,175,98,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,98,.045) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.5), transparent 80%);
+    }
+    main {
+      position: relative;
+      width: min(900px, calc(100% - 28px));
+      margin: 14px auto;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(7,6,5,.88), rgba(7,6,5,.76)),
+        rgba(7,6,5,.82);
+      box-shadow: 0 26px 90px rgba(0,0,0,.56);
+    }
+    .hero,
+    .section,
+    .cta {
+      padding: clamp(24px, 6vw, 58px);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero {
+      min-height: min(760px, 100svh);
+      display: grid;
+      align-content: center;
+      background:
+        linear-gradient(90deg, rgba(7,6,5,.92), rgba(7,6,5,.52)),
+        url("assets/protocol_generated_sel.jpg") right center / min(420px, 48vw) auto no-repeat;
+    }
+    .kicker {
+      margin: 0 0 16px;
+      color: var(--gold);
+      font: 800 12px/1.4 Cinzel, serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      color: var(--bone);
+      font-family: "Cinzel Decorative", Cinzel, serif;
+      line-height: .98;
+      letter-spacing: 0;
+    }
+    h1 {
+      max-width: 720px;
+      font-size: clamp(46px, 10vw, 92px);
+    }
+    h2 {
+      max-width: 720px;
+      font-size: clamp(34px, 6vw, 58px);
+    }
+    h3 {
+      font-size: 22px;
+    }
+    p {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(20px, 3.2vw, 27px);
+    }
+    .lead {
+      color: var(--bone);
+      font-weight: 700;
+    }
+    .small {
+      color: var(--soft);
+      font-size: 17px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .button {
+      min-height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      padding: 0 22px;
+      background: var(--gold);
+      color: #120d07;
+      text-decoration: none;
+      font: 900 13px Cinzel, serif;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .button.secondary {
+      background: transparent;
+      color: var(--bone);
+    }
+    .ruleGrid,
+    .steps,
+    .doors {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .ruleGrid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .steps {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .doors {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .card {
+      min-height: 156px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.18)),
+        rgba(9,7,5,.7);
+    }
+    .card strong,
+    .stepNumber {
+      display: block;
+      color: var(--gold);
+      font: 800 12px/1.4 Cinzel, serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .card p {
+      margin-top: 12px;
+      font-size: 19px;
+    }
+    .stepNumber {
+      font-size: 18px;
+      letter-spacing: .08em;
+    }
+    .quote {
+      margin-top: 28px;
+      padding: clamp(22px, 4vw, 36px);
+      border-left: 4px solid var(--gold);
+      background: rgba(212,175,98,.08);
+      color: var(--bone);
+      font-size: clamp(24px, 3.8vw, 34px);
+      line-height: 1.2;
+    }
+    .prayer {
+      margin-top: 28px;
+      padding: clamp(24px, 5vw, 42px);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(7,6,5,.92), rgba(7,6,5,.66)),
+        url("assets/protocole_sel_steps_plate.jpg") right center / min(360px, 42vw) auto no-repeat;
+    }
+    .prayer p {
+      max-width: 560px;
+      color: var(--bone);
+      font-size: clamp(22px, 3.6vw, 32px);
+    }
+    .cta {
+      border-bottom: 0;
+      background:
+        linear-gradient(90deg, rgba(7,6,5,.9), rgba(7,6,5,.72)),
+        url("assets/payhip_protocole_protection_square.jpg") right center / min(360px, 42vw) auto no-repeat;
+    }
+    .notice {
+      padding: 18px clamp(24px, 6vw, 58px);
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 14px;
+    }
+    @media (max-width: 760px) {
+      body { background-attachment: scroll; }
+      main { width: calc(100% - 18px); margin: 9px auto; }
+      .hero,
+      .prayer,
+      .cta {
+        background-size: 82vw auto;
+        background-position: center bottom;
+        padding-bottom: 210px;
+      }
+      .ruleGrid,
+      .steps,
+      .doors {
+        grid-template-columns: 1fr;
+      }
+      .card { min-height: auto; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <p class="kicker">Protocole gratuit / SEL</p>
+      <h1>Ferme ce que tu continues d'ouvrir.</h1>
+      <p class="lead">Le sel ne te protège pas si tu continues de nourrir ce qui te vide.</p>
+      <p>Ce protocole n'est pas là pour te rendre parano. Il est là pour te rendre lucide : tu nommes la porte, tu poses une limite visible, puis tu fais une action concrète dans les 24 heures.</p>
+      <div class="actions">
+        <a class="button" href="#etapes" data-track-cta="lecture_sel_etapes">Commencer</a>
+        <a class="button secondary" href="landing-lab/05-affiche-film.html" data-track-cta="retour_landing_sel">Retour</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="kicker">Les trois règles</p>
+      <h2>Pas de théâtre. Pas de panique. Une décision.</h2>
+      <div class="ruleGrid">
+        <article class="card">
+          <strong>Regard</strong>
+          <p>Tu identifies ce qui te fragilise au lieu de faire comme si ce n'était rien.</p>
+        </article>
+        <article class="card">
+          <strong>Limite</strong>
+          <p>Tu poses une frontière visible, simple, que tu peux tenir aujourd'hui.</p>
+        </article>
+        <article class="card">
+          <strong>Action</strong>
+          <p>Tu sors du mental : une décision, un geste, une coupure concrète.</p>
+        </article>
+      </div>
+      <div class="quote">Un signe ne vaut rien si ta vie continue d'ouvrir la même porte.</div>
+    </section>
+
+    <section class="section" id="etapes">
+      <p class="kicker">Le geste SEL</p>
+      <h2>Les cinq étapes.</h2>
+      <div class="steps">
+        <article class="card">
+          <span class="stepNumber">01</span>
+          <p>Nomme la porte : ce que tu regardes, acceptes, répètes ou relances.</p>
+        </article>
+        <article class="card">
+          <span class="stepNumber">02</span>
+          <p>Nettoie l'espace autour de toi. Simplement. Sans drame.</p>
+        </article>
+        <article class="card">
+          <span class="stepNumber">03</span>
+          <p>Pose le sel comme rappel visible de ta décision.</p>
+        </article>
+        <article class="card">
+          <span class="stepNumber">04</span>
+          <p>Écris une phrase de limite : “Je ne nourris plus ça.”</p>
+        </article>
+        <article class="card">
+          <span class="stepNumber">05</span>
+          <p>Fais une action dans les 24 heures. Supprime, ferme, range, appelle, tranche.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="kicker">Exemples de portes</p>
+      <h2>Ce que tu peux fermer aujourd'hui.</h2>
+      <div class="doors">
+        <article class="card">
+          <strong>La porte du regard</strong>
+          <p>Un contenu, une image, un compte, une recherche qui te laisse plus faible qu'avant.</p>
+        </article>
+        <article class="card">
+          <strong>La porte de la parole</strong>
+          <p>Une dispute, une justification, une confidence donnée à quelqu'un qui s'en sert contre toi.</p>
+        </article>
+        <article class="card">
+          <strong>La porte du lien</strong>
+          <p>Une relation, un message, une attente qui continue de te vider.</p>
+        </article>
+        <article class="card">
+          <strong>La porte de la peur</strong>
+          <p>Une obsession du signe, de l'attaque, de la malchance, qui t'empêche d'agir clairement.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="kicker">Prière de protection</p>
+      <h2>La force est dans la vérité avec laquelle tu la dis.</h2>
+      <div class="prayer">
+        <p>Dieu, rends-moi lucide. Montre-moi ce que je continue d'ouvrir. Donne-moi la force de fermer ce qui me détruit, sans peur, sans théâtre, sans mensonge. Que ce signe me rappelle ma décision. Amen.</p>
+      </div>
+      <p class="small">Ne la récite pas pour faire joli. Dis-la comme une décision que tu mets debout.</p>
+    </section>
+
+    <section class="cta">
+      <p class="kicker">Suite logique / 7 jours</p>
+      <h2>Si tu veux aller plus loin, fais-le avec un cadre complet.</h2>
+      <p>Le protocole de protection 7 jours reprend le même principe, mais jour par jour : regard, parole, peur, corps, liens, prière et action finale.</p>
+      <div class="actions">
+        <a class="button" href="https://payhip.com/b/TV0tN" data-track-cta="payhip_protection_7_days">Accéder au protocole</a>
+        <a class="button secondary" href="assets/protocole_sel_gratuit.pdf?v=6aa1382" target="_blank" rel="noopener" data-track-pdf="protocole_sel_gratuit">PDF complet</a>
+      </div>
+      <p class="small">Si TikTok bloque le PDF, reste sur cette page : tu as déjà le protocole lisible ici.</p>
+    </section>
+
+    <p class="notice">Ce contenu est spirituel, symbolique et introspectif. Il ne remplace pas un avis médical, psychologique, juridique ou religieux personnalisé. En cas de danger, de violence, d'addiction lourde ou de situation urgente, demande une aide humaine compétente.</p>
+  </main>
+</body>
+</html>

@@ -117,6 +117,16 @@
 
       if (link) {
         const href = link.href || "";
+        const ctaName = link.dataset.trackCta || "";
+
+        if (ctaName && !href.includes("payhip.com/")) {
+          track("ash_clic_cta", {
+            nom_cta: ctaName,
+            destination: href,
+            texte_lien: link.textContent.trim()
+          });
+        }
+
         if (/\.pdf(\?|#|$)/i.test(href)) {
           track("ash_clic_pdf", {
             type_fichier: "pdf",
@@ -127,6 +137,7 @@
 
         if (href.includes("payhip.com/")) {
           track("ash_clic_payhip", {
+            nom_cta: ctaName || "payhip",
             destination: href,
             texte_lien: link.textContent.trim(),
             value: 17,
