@@ -208,6 +208,28 @@
         linear-gradient(90deg, rgba(7,6,5,.9), rgba(7,6,5,.72)),
         url("assets/payhip_protocole_protection_square.jpg") right center / min(360px, 42vw) auto no-repeat;
     }
+    .delivery {
+      max-width: 640px;
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(7,6,5,.58);
+    }
+    .delivery span {
+      display: block;
+      color: rgba(239,230,212,.78);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+    .delivery b {
+      color: var(--gold);
+      font-family: Cinzel, serif;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
     .notice {
       padding: 18px clamp(24px, 6vw, 58px);
       border-top: 1px solid var(--line);
@@ -330,6 +352,10 @@
       <p class="kicker">Suite logique / 7 jours</p>
       <h2>Si tu veux aller plus loin, fais-le avec un cadre complet.</h2>
       <p>Le protocole de protection 7 jours reprend le même principe, mais jour par jour : regard, parole, peur, corps, liens, prière et action finale.</p>
+      <div class="delivery" aria-label="Livraison du protocole 7 jours">
+        <span><b>Après paiement</b> Payhip t'envoie automatiquement un email avec ton lien de téléchargement.</span>
+        <span><b>Si TikTok bloque</b> Ouvre ce mail depuis Gmail, Chrome ou Safari : tu gardes l'accès au PDF.</span>
+      </div>
       <div class="actions">
         <a class="button" href="https://payhip.com/b/TV0tN" data-track-cta="payhip_protection_7_days">Accéder au protocole</a>
         <a class="button secondary" href="assets/protocole_sel_gratuit.pdf?v=6aa1382" target="_blank" rel="noopener" data-track-pdf="protocole_sel_gratuit">PDF complet</a>

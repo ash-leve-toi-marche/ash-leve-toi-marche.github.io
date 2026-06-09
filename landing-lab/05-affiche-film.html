@@ -418,6 +418,30 @@
       font: 900 58px / 1 Cinzel, serif;
     }
 
+    .deliverySteps {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(212,173,95,.26);
+    }
+
+    .deliverySteps span {
+      display: block;
+      color: rgba(244,239,229,.76);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .deliverySteps b {
+      color: var(--gold);
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
     .button {
       min-height: 54px;
       margin-top: 16px;
@@ -557,6 +581,11 @@
       <aside class="priceBox">
         <div class="price">17 €</div>
         <p>PDF complet + checklist. Payhip t'envoie aussi le lien par email après paiement.</p>
+        <div class="deliverySteps" aria-label="Livraison du protocole payant">
+          <span><b>1.</b> Tu payes sur Payhip.</span>
+          <span><b>2.</b> Le lien du PDF arrive par email.</span>
+          <span><b>3.</b> Si TikTok bloque, tu ouvres le mail depuis Gmail, Chrome ou Safari.</span>
+        </div>
         <a class="button" href="https://payhip.com/b/TV0tN" data-track-cta="payhip_protection_7_days">Accéder au protocole</a>
         <p class="truth">Si TikTok bloque le fichier, ouvre le lien reçu par email depuis Gmail, Chrome ou Safari.</p>
       </aside>
