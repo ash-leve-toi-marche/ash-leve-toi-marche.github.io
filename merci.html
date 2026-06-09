@@ -188,6 +188,22 @@
       background: transparent;
       color: var(--bone);
     }
+    .download-help {
+      display: none;
+      max-width: 620px;
+      margin: 14px auto 0;
+      color: rgba(232,220,195,.72);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    .download-help.is-visible {
+      display: block;
+    }
+    .download-help a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
     .offer {
       margin-top: 34px;
       padding-top: 28px;
@@ -227,9 +243,14 @@
       <h1>Commence par le PDF gratuit.</h1>
       <p>Lis-le calmement. Ne cherche pas un signe partout. Cherche la porte que tu continues d'ouvrir, puis fais une action dans les 24 heures.</p>
       <div class="actions">
-        <a class="button" href="assets/protocole_sel_gratuit.pdf?v=6aa1382" data-track-pdf="protocole_sel_gratuit">Ouvrir le PDF</a>
+        <a class="button" id="pdfDownloadButton" href="https://ash-leve-toi-marche.github.io/assets/protocole_sel_gratuit.pdf?v=6aa1382" download="Protocole_SEL_ASH.pdf" target="_blank" rel="noopener" data-track-pdf="protocole_sel_gratuit">Télécharger le PDF</a>
         <a class="button secondary" href="landing-lab/05-affiche-film.html">Retour</a>
       </div>
+      <p class="download-help" id="downloadHelp">
+        Si le navigateur TikTok bloque le téléchargement,
+        <a href="https://ash-leve-toi-marche.github.io/assets/protocole_sel_gratuit.pdf?v=6aa1382" target="_blank" rel="noopener">ouvre le PDF ici</a>
+        ou appuie longtemps sur le lien pour l'ouvrir dans ton navigateur.
+      </p>
       <div class="videoFrame" aria-label="Vidéo de suite du protocole SEL">
         <div class="videoShell">
           <video controls playsinline preload="metadata" poster="assets/videos/ash_protection_merci_video_poster.jpg" data-track-video="video_suite_protection">
@@ -263,5 +284,37 @@
       </aside>
     </section>
   </main>
+  <script>
+    (function () {
+      const button = document.getElementById("pdfDownloadButton");
+      const help = document.getElementById("downloadHelp");
+      if (!button || !help) return;
+
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        button.textContent = "Téléchargement...";
+        help.classList.add("is-visible");
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = button.href;
+        downloadLink.download = button.getAttribute("download") || "Protocole_SEL_ASH.pdf";
+        downloadLink.rel = "noopener";
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        window.setTimeout(() => downloadLink.remove(), 1000);
+
+        window.setTimeout(() => {
+          if (button.textContent === "Téléchargement...") {
+            button.textContent = "Réessayer le téléchargement";
+          }
+        }, 1600);
+
+        window.setTimeout(() => {
+          window.location.href = button.href;
+        }, 2400);
+      });
+    })();
+  </script>
 </body>
 </html>
